@@ -1,0 +1,207 @@
+.home-container {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.home-header {
+    margin-bottom: 32px;
+    /* 64px -> 32px (4px 단위 및 간격 축소) */
+}
+
+.home-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.home-header p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-dim);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+    align-items: start;
+    padding-top: 16px;
+}
+
+@media (max-width: 1560px) {
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .concept-card:nth-child(n) {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 1199px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 타이틀 크기 작아지지 않게 유지 */
+    .home-header h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-header h1 {
+        font-size: 3.5rem;
+        /* 모바일에서도 크기 유지 */
+        letter-spacing: -0.05em;
+    }
+
+    .concept-card {
+        height: 200px;
+        padding: 24px;
+    }
+}
+
+/* 리드미컬한 오프셋 (Masonry-like) */
+.concept-card:nth-child(5n+1) {
+    transform: translateY(0);
+}
+
+.concept-card:nth-child(5n+2) {
+    transform: translateY(40px);
+}
+
+.concept-card:nth-child(5n+3) {
+    transform: translateY(0);
+}
+
+.concept-card:nth-child(5n+4) {
+    transform: translateY(60px);
+}
+
+.concept-card:nth-child(5n+5) {
+    transform: translateY(20px);
+}
+
+.concept-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 32px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 240px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.concept-card:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    border-color: var(--primary);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.card-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    /* Semibold */
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.card-en-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.card-ko-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    opacity: 0.9;
+}
+
+.card-footer-icon {
+    align-self: flex-end;
+    /* 우하단 */
+    color: var(--primary);
+    opacity: 0.6;
+    transition: all 0.4s ease;
+}
+
+.concept-card:hover .card-footer-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* 호버 상태 (딤 효과 및 중앙 텍스트) */
+.hover-state {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 10;
+}
+
+.concept-card:hover .hover-state {
+    opacity: 1;
+}
+
+.hover-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    padding: 0 20px;
+}
+
+.concept-card:hover .hover-text {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

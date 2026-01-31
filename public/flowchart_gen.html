@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            /* Reduced gap since edges have their own height */
+            background: #ffffff;
+            padding: 40px;
+            /* border-radius: 20px; */
+            /* box-shadow: 0 10px 30px rgba(0,0,0,0.05); */
+            width: 400px;
+        }
+
+        .node {
+            background: #ffffff;
+            border: 2px solid #009CE0;
+            border-radius: 12px;
+            padding: 12px 24px;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0, 156, 224, 0.1);
+            text-align: center;
+            min-width: 120px;
+            z-index: 2;
+        }
+
+        .node.end {
+            background: #F3F4F6;
+            border-color: #9CA3AF;
+            color: #6B7280;
+            box-shadow: none;
+        }
+
+        .edge-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 50px;
+            position: relative;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .edge-line {
+            width: 2px;
+            background-color: #E5E7EB;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .edge-label {
+            background: #F9FAFB;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            color: #6B7280;
+            font-weight: 500;
+            border: 1px solid #E5E7EB;
+            z-index: 2;
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #E5E7EB;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Special layout for the branch */
+        .branch-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flowchart-container" id="capture">
+        <!-- Step 1 -->
+        <div class="node">질문 분석</div>
+
+        <!-- Edge -->
+        <div class="edge-container">
+            <div class="edge-line"></div>
+            <span class="edge-label">검색 필요</span>
+            <div class="arrow-down"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="node">문서 검색</div>
+
+        <!-- Edge -->
+        <div class="edge-container">
+            <div class="edge-line"></div>
+            <span class="edge-label">정보 충분</span>
+            <div class="arrow-down"></div>
+        </div>
+
+        <!-- Step 3 & End -->
+        <div class="row">
+            <div class="node">답변 생성</div>
+            <div style="font-size: 20px; color: #E5E7EB;">➔</div>
+            <div class="node end">종료</div>
+        </div>
+
+        <!-- Edge (Branch) -->
+        <div class="edge-container">
+            <div class="edge-line"></div>
+            <span class="edge-label">정보 부족</span>
+            <div class="arrow-down"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="node" style="border-color: #F59E0B; background-color: #FFFBEB; color: #D97706;">재검색</div>
+    </div>
+</body>
+
+</html>

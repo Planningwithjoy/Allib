@@ -1,0 +1,128 @@
+.flowchart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.flowchart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #ffffff;
+    padding: 70px 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin: 16px 0;
+    min-width: max-content;
+}
+
+.flowchart-main-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+.flowchart-loop-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.loop-spacer {
+    width: 260px;
+    /* Width to align with "문서 검색" node position */
+}
+
+.loop-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 0;
+}
+
+.loop-line-down {
+    width: 2px;
+    height: 30px;
+    background-color: #E5E7EB;
+}
+
+.flowchart-node {
+    background: #ffffff;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 10px 20px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 156, 224, 0.1);
+    text-align: center;
+    white-space: nowrap;
+    z-index: 2;
+    position: relative;
+}
+
+.flowchart-node.end {
+    background: #F3F4F6;
+    border-color: #D1D5DB;
+    color: #6B7280;
+    box-shadow: none;
+}
+
+.flowchart-node.loop {
+    background-color: #FFFBEB;
+    border-color: #F59E0B;
+    color: #D97706;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+}
+
+/* Horizontal Edge */
+.edge-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100px;
+    position: relative;
+    justify-content: center;
+}
+
+.edge-line {
+    height: 2px;
+    background-color: #E5E7EB;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.edge-label {
+    background: #F9FAFB;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    color: #6B7280;
+    font-weight: 500;
+    border: 1px solid #E5E7EB;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid #E5E7EB;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+/* End arrow simple */
+.simple-arrow {
+    color: #E5E7EB;
+    font-size: 20px;
+    padding: 0 10px;
+}
