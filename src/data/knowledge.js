@@ -171,7 +171,7 @@ export const KNOWLEDGE_DATA = [
         hoverText: "배경정보",
         chipIcon: "FileText",
         description: "AI가 현재 답변을 생성할 때 실제로 입력으로 보고 있는 모든 정보의 묶음",
-        fullContent: `컨텍스트는 AI가 현재 답변을 생성할 때\n실제로 입력으로 보고 있는 모든 정보의 묶음입니다.\n\n• 사용자 최근 발화\n• 시스템 프롬프트(역할, 규칙)\n• 이전 대화 요약\n• RAG로 가져온 문서 청크\n• 현재 State 값\n• Tool Calling 결과\n\n이 중 이번 호출에 포함된 것만 컨텍스트가 됩니다.`,
+        fullContent: `💡 컨텍스트는 AI가 현재 답변을 생성할 때,\n실제로 입력으로 보고 있는 모든 정보의 묶음\n\n• 사용자 최근 발화\n• 시스템 프롬프트(역할, 규칙)\n• 이전 대화 요약\n• RAG로 가져온 문서 청크\n• 현재 State 값\n• Tool Calling 결과\n\n이 중 이번 호출에 포함된 것만 컨텍스트가 됨`,
         bullets: [
             "컨텍스트는 저장소가 아니라 입력 구성물임",
             "State·Memory는 필요할 때만 컨텍스트로 편입",
