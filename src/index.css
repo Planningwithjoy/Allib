@@ -21,6 +21,12 @@
   padding: 0;
 }
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  /* 스크롤바 유무에 상관없이 레이아웃 고정 */
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);

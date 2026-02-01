@@ -30,14 +30,19 @@
 
 .gnb-container {
     width: 100%;
-    padding: 0 64px 0 28px;
-    /* Left: 28px (Logo Alignment), Right: 64px (Card Alignment) */
+    padding: 0 28px;
+    /* LNB 키워드 시작 라인 일치 */
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    /* 이탈 방지 */
     height: 100%;
     position: relative;
+    box-sizing: border-box;
+}
+
+.gnb-left-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .gnb-logo {
@@ -48,24 +53,54 @@
     font-size: 1.3rem;
     letter-spacing: -0.03em;
     flex-shrink: 0;
-    margin-right: 40px;
-    /* 로고와 검색바 사이 최소 간격 */
 }
 
 .gnb-nav {
     display: flex;
-    gap: 32px;
-    margin-left: auto;
-}
-
-/* Search Area */
-.gnb-search-area {
+    gap: 64px;
     position: absolute;
     left: 324px;
-    /* Desktop 기준: LNB(260) + LayoutPadding(64) */
-    width: 540px;
+    /* 홈 화면 타이틀, 디스크립션, 카드 시작 라인과 일치 */
+}
+
+.gnb-right-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 36px;
+    /* 전체 끝 여백 64px 맞춤 (컨테이너 28px + 패딩 36px) */
+}
+
+.gnb-search-area {
+    width: 360px;
     z-index: 550;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gnb-quiz-btn-container {
+    z-index: 550;
+}
+
+.gnb-quiz-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+}
+
+.gnb-quiz-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 156, 224, 0.1);
 }
 
 .search-input-wrapper {
@@ -231,17 +266,21 @@
 
 .gnb-link {
     font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-dim);
-    transition: color 0.2s;
+    font-weight: 600;
+    color: var(--text);
+    opacity: 0.8;
+    transition: all 0.2s;
 }
 
 .gnb-link:hover {
     color: var(--text);
+    opacity: 1;
 }
 
 .gnb-link.active {
+    /* 퀴즈 페이지처럼 통일하기 위해 활성 상태의 굵기/색상 구분을 제거 */
     color: var(--text);
+    opacity: 0.8;
     font-weight: 600;
 }
 
@@ -278,10 +317,14 @@
     backdrop-filter: blur(32px);
     border-bottom: 1px solid var(--border);
     border-left: 1px solid var(--border);
-    border-radius: 0 0 0 32px;
+    border-right: 1px solid var(--border);
+    border-radius: 0 0 32px 32px;
     pointer-events: auto;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    /* 더 크고 부드러운 다중 레이어 그림자로 고도화 */
+    box-shadow:
+        0 40px 80px -16px rgba(0, 0, 0, 0.08),
+        0 16px 32px -8px rgba(0, 0, 0, 0.04);
 }
 
 .mega-menu-content {
@@ -319,7 +362,7 @@
     color: var(--primary);
 }
 
-/* Responsive GNB */
+/* Responsive GNB (Updated: 2026-02-01) */
 @media (max-width: 1199px) {
     .menu-toggle-btn {
         display: flex;
@@ -330,64 +373,75 @@
         display: none;
     }
 
-    .gnb-search-area {
-        position: absolute;
-        left: 160px;
-        /* 본문 타이틀 정렬(160px)과 일치 */
-        width: 440px;
-        margin: 0;
+    .gnb-container {
+        padding: 0 28px;
+        /* 로고 시작 라인 일치 및 여백 최적화 */
     }
 
-    .gnb-container {
-        padding: 0 160px;
+    .gnb-left-group {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
     }
 
     .gnb-logo {
-        position: absolute;
-        left: 64px;
-        /* 햄버거 버튼 뒤, 본문 정렬(160px) 앞에 배치 */
-        margin-right: 0;
+        width: auto;
+        margin-right: 24px;
     }
 
-    /* 화면이 767px보다 작아질 때만 유동적으로 전환 */
-    @media (max-width: 767px) {
-        .gnb-search-area {
-            left: 56px;
-            width: calc(100% - 100px);
-        }
+    .gnb-right-group {
+        flex: 1;
+        margin-left: 0;
+        /* auto 마진 해제 */
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
 
-        .gnb-logo {
-            display: none;
-        }
+    .gnb-search-area {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+        /* 로고 우측 가용 공간 전체 활용 */
     }
 }
 
 @media (max-width: 767px) {
-    .gnb-search-area {
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        margin: 0;
-        max-width: 100%;
-        background-color: var(--bg);
-        padding: 8px 16px;
-        border-bottom: 1px solid var(--border);
-        display: none;
-    }
-
-    .gnb-search-area.is-focused,
-    .gnb-search-area:focus-within {
-        display: block;
-    }
-
     .gnb-container {
-        gap: 12px;
-        padding: 0 24px;
+        padding: 0 16px;
+        gap: 0;
+    }
+
+    .gnb-left-group {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .gnb-logo {
+        margin-right: 12px;
     }
 
     .gnb-logo span {
         display: none;
+    }
+
+    .gnb-right-group {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-end;
+    }
+
+    .gnb-search-area {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .gnb-quiz-btn-container {
+        flex-shrink: 0;
     }
 }
 

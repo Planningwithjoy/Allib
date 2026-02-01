@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import './Home.css';
 import { KNOWLEDGE_DATA, CATEGORIES } from '../data/knowledge';
+import FloatingScrollButton from '../components/FloatingScrollButton';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -57,6 +58,7 @@ const Home = () => {
                     );
                 })}
             </div>
+            <FloatingScrollButton />
         </div>
     );
 };

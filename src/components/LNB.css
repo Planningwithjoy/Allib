@@ -90,7 +90,7 @@
 
 .nav-item:hover {
     background-color: var(--surface-hover);
-    color: var(--text);
+    color: var(--primary);
 }
 
 .nav-item.active {

@@ -1,0 +1,109 @@
+/* OXQuiz.css 기반으로 주관식 스타일 추가 */
+@import './OXQuiz.css';
+
+/* 입력 폼 스타일 */
+.short-answer-form {
+    padding: 0 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.short-input {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-family: var(--font-sans);
+}
+
+.short-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 156, 224, 0.1);
+}
+
+.short-input::placeholder {
+    color: #9CA3AF;
+    font-weight: 400;
+}
+
+.short-submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--primary);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.short-submit-btn:hover:not(:disabled) {
+    background: var(--primary);
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 156, 224, 0.3);
+}
+
+.short-submit-btn:disabled {
+    background: var(--border);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* 정답 공개 영역 (모달) */
+.modal-correct-answer {
+    background: rgba(0, 156, 224, 0.08);
+    /* primary color tint */
+    color: var(--primary);
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 156, 224, 0.2);
+}
+
+.modal-correct-answer span {
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-left: 4px;
+}
+
+/* 결과 리스트 내 정답 표시 */
+.item-answer-sub {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.ans-correct {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.ans-wrong {
+    color: var(--error);
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.ans-real {
+    color: var(--primary);
+    font-weight: 700;
+}

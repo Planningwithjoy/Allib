@@ -5,6 +5,10 @@ import LNB from './components/LNB';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
+import Quiz from './pages/Quiz';
+import OXQuiz from './pages/OXQuiz';
+import ShortQuiz from './pages/ShortQuiz';
+import RandomQuiz from './pages/RandomQuiz';
 import './index.css';
 
 const AppContent = () => {
@@ -28,6 +32,10 @@ const AppContent = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/detail/:id" element={<Detail />} />
+                        <Route path="/quiz" element={<Quiz />} />
+                        <Route path="/quiz/short" element={<ShortQuiz />} />
+                        <Route path="/quiz/ox" element={<OXQuiz />} />
+                        <Route path="/quiz/random" element={<RandomQuiz />} />
                     </Routes>
                 </main>
             </div>

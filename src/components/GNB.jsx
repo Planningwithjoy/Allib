@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { CATEGORIES, KNOWLEDGE_DATA } from '../data/knowledge';
 import './GNB.css';
-import { Sparkles, ChevronRight, Search, X, Clock, Menu } from 'lucide-react';
+import { Sparkles, ChevronRight, Search, X, Clock, Menu, Trophy } from 'lucide-react';
 
 const GNB = ({ isMenuOpen, setIsMenuOpen }) => {
     const [activeCategory, setActiveCategory] = useState(null);
@@ -72,85 +72,19 @@ const GNB = ({ isMenuOpen, setIsMenuOpen }) => {
     return (
         <header className="gnb" onMouseLeave={() => setActiveCategory(null)}>
             <div className="gnb-container">
-                <button className="menu-toggle-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                <div className="gnb-left-group">
+                    <button className="menu-toggle-btn" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
 
-                <NavLink to="/" className="gnb-logo" onClick={() => {
-                    setActiveCategory(null);
-                    setIsSearchFocused(false); // 로고 클릭 시 검색창 닫기
-                    setSearchTerm('');
-                }}>
-                    <Sparkles fill="var(--primary)" color="var(--primary)" size={18} />
-                    <span>AIlib</span>
-                </NavLink>
-
-                <div ref={searchRef} className={`gnb-search-area ${isSearchFocused ? 'is-focused' : ''}`}>
-                    <div className="search-input-wrapper">
-                        <Search size={16} className="search-icon" />
-                        <input
-                            type="text"
-                            placeholder="궁금한 키워드를 검색해보세요!"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onFocus={() => setIsSearchFocused(true)}
-                            onKeyDown={handleKeyDown}
-                        />
-                        {searchTerm && (
-                            <button className="search-clear" onClick={() => setSearchTerm('')}>
-                                <X size={14} />
-                            </button>
-                        )}
-                    </div>
-
-                    {isSearchFocused && (
-                        <div className="search-dropdown">
-                            {searchTerm.trim() ? (
-                                <div className="search-results">
-                                    <div className="dropdown-label">검색 결과</div>
-                                    {filteredResults.length > 0 ? (
-                                        filteredResults.map(item => (
-                                            <div
-                                                key={item.id}
-                                                className="search-result-item"
-                                                onClick={() => handleSearchSelect(item)}
-                                            >
-                                                <span className="result-en">{item.enTitle}</span>
-                                                <span className="result-ko">{item.koTitle}</span>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="search-empty">검색 결과가 없습니다.</div>
-                                    )}
-                                </div>
-                            ) : (
-                                <div className="recent-searches">
-                                    <div className="dropdown-label">최근 검색어</div>
-                                    {recentSearches.length > 0 ? (
-                                        recentSearches.map((text, idx) => (
-                                            <div key={idx} className="recent-item" onClick={() => {
-                                                setSearchTerm(text);
-                                                setIsSearchFocused(true);
-                                            }}>
-                                                <div className="recent-item-left">
-                                                    <Clock size={14} className="clock-icon" />
-                                                    <span>{text}</span>
-                                                </div>
-                                                <button
-                                                    className="delete-btn"
-                                                    onClick={(e) => removeRecentSearch(e, text)}
-                                                >
-                                                    <X size={14} />
-                                                </button>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="search-empty">최근 검색어가 없습니다.</div>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    )}
+                    <NavLink to="/" className="gnb-logo" onClick={() => {
+                        setActiveCategory(null);
+                        setIsSearchFocused(false);
+                        setSearchTerm('');
+                    }}>
+                        <Sparkles fill="var(--primary)" color="var(--primary)" size={18} />
+                        <span>AIlib</span>
+                    </NavLink>
                 </div>
 
                 <nav className="gnb-nav">
@@ -174,6 +108,86 @@ const GNB = ({ isMenuOpen, setIsMenuOpen }) => {
                         </div>
                     ))}
                 </nav>
+
+                <div className="gnb-right-group">
+                    <div ref={searchRef} className={`gnb-search-area ${isSearchFocused ? 'is-focused' : ''}`}>
+                        <div className="search-input-wrapper">
+                            <Search size={16} className="search-icon" />
+                            <input
+                                type="text"
+                                placeholder="궁금한 키워드를 검색해보세요!"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onFocus={() => setIsSearchFocused(true)}
+                                onKeyDown={handleKeyDown}
+                            />
+                            {searchTerm && (
+                                <button className="search-clear" onClick={() => setSearchTerm('')}>
+                                    <X size={14} />
+                                </button>
+                            )}
+                        </div>
+
+                        {isSearchFocused && (
+                            <div className="search-dropdown">
+                                {searchTerm.trim() ? (
+                                    <div className="search-results">
+                                        <div className="dropdown-label">검색 결과</div>
+                                        {filteredResults.length > 0 ? (
+                                            filteredResults.map(item => (
+                                                <div
+                                                    key={item.id}
+                                                    className="search-result-item"
+                                                    onClick={() => handleSearchSelect(item)}
+                                                >
+                                                    <span className="result-en">{item.enTitle}</span>
+                                                    <span className="result-ko">{item.koTitle}</span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="search-empty">검색 결과가 없습니다.</div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <div className="recent-searches">
+                                        <div className="dropdown-label">최근 검색어</div>
+                                        {recentSearches.length > 0 ? (
+                                            recentSearches.map((text, idx) => (
+                                                <div key={idx} className="recent-item" onClick={() => {
+                                                    setSearchTerm(text);
+                                                    setIsSearchFocused(true);
+                                                }}>
+                                                    <div className="recent-item-left">
+                                                        <Clock size={14} className="clock-icon" />
+                                                        <span>{text}</span>
+                                                    </div>
+                                                    <button
+                                                        className="delete-btn"
+                                                        onClick={(e) => removeRecentSearch(e, text)}
+                                                    >
+                                                        <X size={14} />
+                                                    </button>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="search-empty">최근 검색어가 없습니다.</div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="gnb-quiz-btn-container">
+                        <button
+                            className="gnb-quiz-btn"
+                            onClick={() => navigate('/quiz')}
+                            title="AI Quiz"
+                        >
+                            <Trophy size={20} strokeWidth={1.5} />
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* Mega Menu Flyout */}

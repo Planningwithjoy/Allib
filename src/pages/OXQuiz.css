@@ -1,0 +1,562 @@
+.quiz-page-wrapper {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg);
+    padding: 20px 0;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--surface);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+/* Dot Indicator */
+.dot-indicator-track,
+.dot-indicator-list {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 24px 0;
+}
+
+.dot-item {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #E5E7EB;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.dot-item.current {
+    background: var(--text);
+    box-shadow: 0 0 0 3px rgba(89, 88, 88, 0.1);
+    transform: scale(1.2);
+}
+
+.dot-item.correct {
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 156, 224, 0.1);
+}
+
+.dot-item.wrong {
+    background: var(--error);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Result Dot Summary */
+.dot-summary-container {
+    background: var(--bg);
+    margin: 0 24px 24px;
+    padding: 24px;
+    border-radius: 16px;
+}
+
+.dot-indicator-list {
+    padding: 0;
+    margin-bottom: 12px;
+}
+
+.dot-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-item .dot-item {
+    width: 8px;
+    height: 8px;
+}
+
+/* Header */
+.quiz-header-ing,
+.quiz-header-minimal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    position: relative;
+    /* 타이틀 절대 위치 정렬 가능성 대비 */
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 8px;
+    margin-left: -8px;
+    transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover {
+    opacity: 0.6;
+}
+
+.progress-info {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dim);
+}
+
+.current-step {
+    color: var(--primary);
+}
+
+/* Timer */
+.timer-area {
+    padding: 0 24px;
+    margin-bottom: 30px;
+}
+
+.timer-bar-track {
+    height: 4px;
+    background: #E5E7EB;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.timer-bar-fill {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.1s linear;
+}
+
+.timer-bar-fill.warning {
+    background: var(--error);
+}
+
+.timer-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+/* Question Card */
+.question-card {
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    flex-grow: 1;
+}
+
+.q-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(0, 156, 224, 0.1);
+    color: var(--primary);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.q-text {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-weight: 700;
+    color: var(--text);
+    word-break: keep-all;
+}
+
+/* OX Buttons */
+.ox-actions {
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+    padding-bottom: 40px;
+}
+
+.ox-btn {
+    flex: 1;
+    aspect-ratio: 1;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+    /* 추가 패딩으로 아이콘 짤림 방지 */
+}
+
+/* 아이콘 짤림 방지를 위한 SVG 컨테이너 */
+.ox-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    /* SVG가 테두리에 닿지 않도록 여유 공간 확보 */
+    transition: transform 0.2s ease;
+}
+
+.ox-icon-circle svg {
+    overflow: visible;
+    /* SVG 패스 자체가 튀어나오는 것 방지 */
+}
+
+.o-btn .ox-icon-circle {
+    color: var(--primary);
+}
+
+.x-btn .ox-icon-circle {
+    color: var(--error);
+}
+
+.ox-btn:hover {
+    border-color: var(--primary);
+    background-color: var(--surface-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.x-btn:hover {
+    border-color: var(--error);
+}
+
+.ox-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Result View */
+.result-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 24px 24px;
+    text-align: center;
+}
+
+.result-score-text {
+    margin-bottom: 24px;
+}
+
+.score-val {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    line-height: 1;
+    letter-spacing: -1px;
+    font-family: var(--font-sans);
+}
+
+
+
+.result-comment {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.wrong-list-container {
+    padding: 0 24px 20px;
+}
+
+.list-title {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+}
+
+.wrong-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.result-item-info {
+    flex: 1;
+    margin-right: 12px;
+}
+
+.item-no {
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 0;
+    /* Removed margin-bottom to fix alignment */
+    display: block;
+}
+
+.result-item.wrong .item-no {
+    color: var(--error);
+}
+
+.item-header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    /* Increased slightly for spacing */
+}
+
+.item-type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.4;
+    background-color: #F3F4F6;
+    color: #4B5563;
+}
+
+.item-type-badge.ox,
+.item-type-badge.short {
+    background-color: #F3F4F6;
+    color: #6B7280;
+    /* Unified gray color */
+}
+
+.item-q {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.4;
+}
+
+.result-status-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.correct .result-status-icon {
+    color: var(--primary);
+    background: rgba(0, 156, 224, 0.05);
+}
+
+.wrong .result-status-icon {
+    color: var(--error);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.result-actions {
+    padding: 0 24px 30px;
+}
+
+.restart-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.restart-btn:hover {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
+
+/* Immediate Feedback Modal */
+.explanation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.explanation-modal {
+    width: 100%;
+    max-width: 440px;
+    background: var(--surface);
+    border-radius: 32px;
+    position: relative;
+    padding: 40px 24px 30px;
+    box-shadow: var(--shadow-lg);
+    animation: modalUp 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.feedback-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-weight: 800;
+    color: #fff;
+    box-shadow: var(--shadow-md);
+    font-size: 1rem;
+}
+
+.feedback-badge.correct {
+    background: var(--primary);
+}
+
+.feedback-badge.wrong {
+    background: var(--error);
+}
+
+.feedback-badge.warning {
+    background: var(--warning);
+}
+
+.modal-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.modal-icon-wrapper .o-icon {
+    color: var(--primary);
+}
+
+.modal-icon-wrapper .x-icon {
+    color: var(--error);
+}
+
+.modal-icon-wrapper svg {
+    overflow: visible;
+}
+
+.modal-q {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text);
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.modal-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 20px;
+}
+
+.modal-explanation {
+    display: flex;
+    gap: 12px;
+    background: var(--bg);
+    padding: 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+}
+
+.modal-explanation svg {
+    flex-shrink: 0;
+    color: var(--primary);
+    margin-top: 2px;
+}
+
+
+
+.modal-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text);
+    font-family: var(--font-sans);
+    /* word-break 속성 제거: 자연스러운 줄바꿈 허용 */
+}
+
+.modal-next-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.modal-next-btn:hover {
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .quiz-container {
+        border-radius: 0;
+        height: 100%;
+        max-width: none;
+        border: none;
+    }
+
+    .quiz-page-wrapper {
+        padding: 0;
+    }
+}
+
+/* Result specific header title */
+.result-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    white-space: nowrap;
+}

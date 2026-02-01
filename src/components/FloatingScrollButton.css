@@ -1,0 +1,60 @@
+.floating-scroll-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 48px;
+    width: 52px;
+    height: 52px;
+    /* 둥근 사각형(스쿼클) 형태로 변경하여 카드 디자인과 통일 */
+    border-radius: 18px;
+    /* 글래스모피즘 효과: 반투명 배경 + 블러 */
+    /* 브랜드 키 컬러 계열의 매우 엷은 블루 톤으로 가시성 확보 */
+    background: rgba(0, 156, 224, 0.08);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    /* 섬세한 테두리 및 아이콘 색상인 primary 활용 */
+    color: var(--primary);
+    border: 1px solid rgba(0, 156, 224, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 더욱 깊이감 있는 세련된 그림자 */
+    box-shadow:
+        0 10px 25px -5px rgba(0, 0, 0, 0.05),
+        0 8px 10px -6px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(24px) scale(0.9);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.floating-scroll-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.floating-scroll-btn:hover {
+    transform: translateY(-6px) scale(1.05);
+    background: rgba(0, 156, 224, 0.15);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 20px 30px -10px rgba(0, 156, 224, 0.15);
+}
+
+.floating-scroll-btn:active {
+    transform: scale(0.92);
+    transition: all 0.1s;
+}
+
+@media (max-width: 768px) {
+    .floating-scroll-btn {
+        bottom: 32px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,177 @@
+.quiz-page {
+    /* max-width 및 margin: 0 auto 제거하여 메인 레이아웃과 수직 시작점 일치 */
+    padding: 0 0 80px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.quiz-header {
+    text-align: left;
+    margin-bottom: 32px;
+    /* .home-header와 동일하게 조정 */
+}
+
+.quiz-main-title {
+    font-size: 3.5rem;
+    /* .home-header h1과 동일하게 확대 */
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.04em;
+}
+
+.quiz-main-desc {
+    font-size: 1.1rem;
+    /* .home-header p와 동일하게 조정 */
+    font-weight: 400;
+    color: var(--text-dim);
+}
+
+.quiz-grid {
+    display: grid;
+    /* 3열 고정 및 간격 24px로 GNB 메뉴 끝점과 수렬 일치 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding-top: 16px;
+}
+
+.quiz-card {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    padding: 40px;
+    /* 상하좌우 패딩을 균일하게 조정 */
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 320px;
+    /* 충분한 높이 확보 */
+    overflow: hidden;
+}
+
+.quiz-card-info {
+    position: relative;
+    z-index: 10;
+    /* 최상단 레이어 */
+    width: 100%;
+}
+
+.quiz-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    /* 경계선을 완전히 없애기 위해 spread를 100%로 늘리고 투명도를 더 낮춤 */
+    background: radial-gradient(circle at top right, var(--card-color), transparent 100%);
+    opacity: 0.04;
+    transition: opacity 0.3s;
+}
+
+.quiz-card:hover {
+    transform: translateY(-12px);
+    border-color: var(--card-color);
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+}
+
+.quiz-card:hover .quiz-card-title {
+    opacity: 0.8;
+    /* 호버 시 약간 투명하게 하여 인터랙션 부여 */
+}
+
+.quiz-card:hover .quiz-card-footer {
+    color: var(--card-color);
+    /* 푸터는 호버 시에만 강조 */
+}
+
+.quiz-card:hover::before {
+    opacity: 0.08;
+}
+
+.quiz-card-content {
+    position: relative;
+    z-index: 10;
+}
+
+.quiz-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--card-color);
+    /* 제목에 상시 브랜드 키 컬러 적용 */
+    margin-bottom: 12px;
+    transition: opacity 0.3s ease;
+}
+
+.quiz-card-desc {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    white-space: pre-wrap;
+    /* 줄바꿈 적용 */
+}
+
+.quiz-card-illustration {
+    position: absolute;
+    right: -10px;
+    /* 크기 축소에 맞춰 위치 재조정 */
+    bottom: -10px;
+    margin: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* 배경 레이어 유지 */
+    opacity: 0.15;
+    /* 크기가 작아진 만큼 가시성 살짝 보강 */
+}
+
+.quiz-card-illustration img {
+    width: 160px;
+    /* 너무 크지 않은 적절한 배경 사이즈로 축소 */
+    height: 160px;
+    object-fit: contain;
+    filter: grayscale(10%) brightness(1.05);
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.quiz-card:hover .quiz-card-illustration img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.quiz-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    /* 푸터 텍스트 및 아이콘을 회색으로 변경 */
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 20;
+    transition: color 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-main-title {
+        font-size: 2.5rem;
+    }
+
+    .quiz-grid {
+        grid-template-columns: 1fr;
+    }
+}
