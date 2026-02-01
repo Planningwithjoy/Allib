@@ -392,7 +392,8 @@
     .gnb-right-group {
         flex: 1;
         margin-left: 0;
-        /* auto 마진 해제 */
+        padding-right: 0;
+        /* auto 마진, 패딩 해제 */
         display: flex;
         align-items: center;
         gap: 12px;
@@ -402,6 +403,7 @@
         flex: 1;
         min-width: 0;
         max-width: none;
+        width: auto;
         /* 로고 우측 가용 공간 전체 활용 */
     }
 }
@@ -430,14 +432,17 @@
         flex: 1;
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 8px;
+        /* 간격 좁힘 */
         justify-content: flex-end;
+        padding-right: 0;
     }
 
     .gnb-search-area {
         flex: 1;
         min-width: 0;
         max-width: none;
+        width: auto;
     }
 
     .gnb-quiz-btn-container {
