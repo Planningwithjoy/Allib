@@ -52,6 +52,39 @@ const RandomQuiz = () => {
         setTxtAnswer('');
     }, []);
 
+    const retryWrongAnswers = useCallback(() => {
+        const wrongQuestions = userAnswers
+            .filter(a => !a.isCorrect)
+            .map(a => {
+                // 원본 문제 데이터 복원
+                const q = {
+                    id: a.id,
+                    question: a.question,
+                    answer: a.answer,
+                    explanation: a.explanation,
+                    type: a.type
+                };
+                if (a.acceptedAnswers) q.acceptedAnswers = a.acceptedAnswers;
+                return q;
+            });
+
+        setQuestions(wrongQuestions);
+        setCurrentIndex(0);
+
+        // 첫 문제 타입에 따라 시간 설정
+        if (wrongQuestions.length > 0) {
+            setTimeLeft(wrongQuestions[0].type === 'ox' ? 10 : 20);
+        }
+
+        setIsFinished(false);
+        setUserAnswers([]);
+        setScore(0);
+        setShowImmediateFeedback(false);
+        setLastFeedback(null);
+        setSelectedExplanation(null);
+        setTxtAnswer('');
+    }, [userAnswers]);
+
     useEffect(() => {
         initQuiz();
     }, [initQuiz]);
@@ -164,7 +197,7 @@ const RandomQuiz = () => {
     // 다음 문제로 이동
     const moveNext = () => {
         setShowImmediateFeedback(false);
-        if (currentIndex < 9) {
+        if (currentIndex < questions.length - 1) {
             const nextIndex = currentIndex + 1;
             setCurrentIndex(nextIndex);
 
@@ -255,9 +288,20 @@ const RandomQuiz = () => {
                     </div>
 
                     <div className="result-actions">
-                        <button className="restart-btn" onClick={initQuiz}>
-                            다시 도전하기
-                        </button>
+                        {userAnswers.some(a => !a.isCorrect) ? (
+                            <div className="result-actions-group">
+                                <button className="icon-restart-btn" onClick={initQuiz} title="전체 다시하기">
+                                    <RotateCcw size={24} strokeWidth={1.5} />
+                                </button>
+                                <button className="retry-wrong-btn" onClick={retryWrongAnswers}>
+                                    오답만 다시 풀기
+                                </button>
+                            </div>
+                        ) : (
+                            <button className="restart-btn" onClick={initQuiz}>
+                                다시 도전하기
+                            </button>
+                        )}
                     </div>
 
                     {/* 결과 페이지 해설 모달 */}
@@ -320,7 +364,7 @@ const RandomQuiz = () => {
         <div className="quiz-page-wrapper">
             <div className="quiz-container ing-view">
                 <div className="dot-indicator-track">
-                    {[...Array(10)].map((_, i) => {
+                    {[...Array(questions.length)].map((_, i) => {
                         let status = '';
                         if (i < userAnswers.length) {
                             status = userAnswers[i].isCorrect ? 'correct' : 'wrong';
@@ -337,7 +381,7 @@ const RandomQuiz = () => {
                     </button>
                     <div className="progress-info">
                         <span className="current-step">{currentIndex + 1}</span>
-                        <span className="total-step">/ 10</span>
+                        <span className="total-step">/ {questions.length}</span>
                     </div>
                 </header>
 
@@ -424,7 +468,7 @@ const RandomQuiz = () => {
                                     </div>
                                 </div>
                                 <button className="modal-next-btn" onClick={moveNext}>
-                                    <span>{currentIndex < 9 ? '다음 단계로' : '결과 확인하기'}</span>
+                                    <span>{currentIndex < questions.length - 1 ? '다음 단계로' : '결과 확인하기'}</span>
                                 </button>
                             </div>
                         </div>

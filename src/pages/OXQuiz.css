@@ -397,6 +397,57 @@
     transition: all 0.2s;
 }
 
+/* Result Actions - Split Layout */
+.result-actions-group {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.icon-restart-btn {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    flex-shrink: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-restart-btn:hover {
+    background: var(--surface-hover);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.retry-wrong-btn {
+    flex: 1;
+    padding: 16px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.retry-wrong-btn:hover {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
+
 .restart-btn:hover {
     transform: scale(0.98);
     opacity: 0.9;

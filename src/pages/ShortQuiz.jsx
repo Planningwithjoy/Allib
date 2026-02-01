@@ -42,6 +42,29 @@ const ShortQuiz = () => {
         setTxtAnswer('');
     }, []);
 
+    const retryWrongAnswers = useCallback(() => {
+        const wrongQuestions = userAnswers
+            .filter(a => !a.isCorrect)
+            .map(a => ({
+                id: a.id,
+                question: a.question,
+                answer: a.answer,
+                acceptedAnswers: a.acceptedAnswers,
+                explanation: a.explanation
+            }));
+
+        setQuestions(wrongQuestions);
+        setCurrentIndex(0);
+        setTimeLeft(20);
+        setIsFinished(false);
+        setUserAnswers([]);
+        setScore(0);
+        setShowImmediateFeedback(false);
+        setLastFeedback(null);
+        setSelectedExplanation(null);
+        setTxtAnswer('');
+    }, [userAnswers]);
+
     useEffect(() => {
         initQuiz();
     }, [initQuiz]);
@@ -120,7 +143,7 @@ const ShortQuiz = () => {
     // 다음 문제로 이동
     const moveNext = () => {
         setShowImmediateFeedback(false);
-        if (currentIndex < 9) {
+        if (currentIndex < questions.length - 1) {
             setCurrentIndex(prev => prev + 1);
             setTimeLeft(20); // 시간 리셋
         } else {
@@ -200,9 +223,20 @@ const ShortQuiz = () => {
                     </div>
 
                     <div className="result-actions">
-                        <button className="restart-btn" onClick={initQuiz}>
-                            다시 도전하기
-                        </button>
+                        {userAnswers.some(a => !a.isCorrect) ? (
+                            <div className="result-actions-group">
+                                <button className="icon-restart-btn" onClick={initQuiz} title="전체 다시하기">
+                                    <RotateCcw size={24} strokeWidth={1.5} />
+                                </button>
+                                <button className="retry-wrong-btn" onClick={retryWrongAnswers}>
+                                    오답만 다시 풀기
+                                </button>
+                            </div>
+                        ) : (
+                            <button className="restart-btn" onClick={initQuiz}>
+                                다시 도전하기
+                            </button>
+                        )}
                     </div>
 
                     {/* 결과 페이지 해설 모달 */}
@@ -254,7 +288,7 @@ const ShortQuiz = () => {
             <div className="quiz-container ing-view">
                 {/* 도트 인디케이터 */}
                 <div className="dot-indicator-track">
-                    {[...Array(10)].map((_, i) => {
+                    {[...Array(questions.length)].map((_, i) => {
                         let status = '';
                         if (i < userAnswers.length) {
                             status = userAnswers[i].isCorrect ? 'correct' : 'wrong';
@@ -271,7 +305,7 @@ const ShortQuiz = () => {
                     </button>
                     <div className="progress-info">
                         <span className="current-step">{currentIndex + 1}</span>
-                        <span className="total-step">/ 10</span>
+                        <span className="total-step">/ {questions.length}</span>
                     </div>
                 </header>
 
@@ -337,7 +371,7 @@ const ShortQuiz = () => {
                                     </div>
                                 </div>
                                 <button className="modal-next-btn" onClick={moveNext}>
-                                    <span>{currentIndex < 9 ? '다음 단계로' : '결과 확인하기'}</span>
+                                    <span>{currentIndex < questions.length - 1 ? '다음 단계로' : '결과 확인하기'}</span>
                                 </button>
                             </div>
                         </div>
