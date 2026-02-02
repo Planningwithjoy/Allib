@@ -272,6 +272,8 @@
     transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     color: var(--text-dim);
     opacity: 0.5;
+    flex-shrink: 0;
+    /* 아이콘 축소 방지 */
 }
 
 .faq-item.active .faq-arrow {

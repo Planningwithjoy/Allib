@@ -138,6 +138,76 @@ export const OX_QUESTIONS = [
         question: "랭그래프(LangGraph)는 직선적인 순차 실행보다는 복잡한 반복(Loop)이나 상태 중심의 흐름을 설계하는 데 유리하다.",
         answer: true,
         explanation: "상황에 따라 이전으로 가거나 길을 선택해야 하는 복합적인 에이전트 구조를 짤 때 아주 강력한 힘을 발휘한답니다."
+    },
+    {
+        id: 21,
+        category: "UX·운영",
+        question: "사용자 워크쓰루와 에이전트 워크쓰루는 대상만 다를 뿐 목적은 동일하므로 문서를 작성할 때 혼용해서 사용해도 무방하다.",
+        answer: false,
+        explanation: "사용자 워크쓰루는 '성공 경험'이 목적이고, 에이전트 워크쓰루는 '신뢰와 디버깅'이 목적이에요. 대상과 목적이 모두 다르므로 절대 혼용하면 안 된답니다."
+    },
+    {
+        id: 22,
+        category: "UX·운영",
+        question: "SSE 기술을 사용하면 실제 AI 모델의 답변 생성 속도가 빨라진다.",
+        answer: false,
+        explanation: "SSE는 속도를 높이는 게 아니라, 만들어지는 대로 즉시 보여줘서 지루함을 덜어주는 '체감 속도' 개선 기술이에요."
+    },
+    {
+        id: 23,
+        category: "UX·운영",
+        question: "'스트리밍'과 'SSE'는 동일한 개념이므로 기획서에서 구분 없이 사용해도 개발자가 알아서 이해한다.",
+        answer: false,
+        explanation: "스트리밍은 '보여주는 방식(UX)'이고, SSE는 그걸 구현하는 '통신 기술'이에요. 기획서에서는 '보여주고 싶은 경험'과 '구현 기술'을 명확히 구분해서 적어야 한답니다."
+    },
+    {
+        id: 24,
+        category: "UX·운영",
+        question: "스트리밍은 사용자가 대기하는 지루함을 줄여주므로, '예/아니오' 같은 짧은 답변이나 정확성이 중요한 법률 답변 등 모든 상황에 적용하는 것이 좋다.",
+        answer: false,
+        explanation: "답변이 짧거나(예/아니오), 중간 과정 노출이 신뢰를 떨어뜨리는 경우(법률/의료)에는 스트리밍이 오히려 방해가 됩니다."
+    },
+    {
+        id: 25,
+        category: "UX·운영",
+        question: "AI 답변을 단순히 실시간으로 보여주기만 하면 되는 상황에서도, 양방향 통신이 가능한 웹소켓(WebSocket)을 사용하는 것이 무조건 좋다.",
+        answer: false,
+        explanation: "단순히 서버에서 데이터를 받기만 하면 되는 경우(스트리밍)는 SSE가 훨씬 가볍고 효율적이에요. 웹소켓은 채팅처럼 '서로' 주고받아야 할 때 쓰는 게 적합합니다."
+    },
+    {
+        id: 26,
+        category: "UX·운영",
+        question: "웹소켓을 도입하기만 하면, 별도의 설계 없이도 AI가 사용자의 발언을 인식하여 답변 생성을 자동으로 중단한다.",
+        answer: false,
+        explanation: "웹소켓은 '말을 걸 수 있는 통로'일 뿐이에요. AI가 말을 듣고 멈추게 하려면 별도의 '중단 로직'을 설계해야 합니다."
+    },
+    {
+        id: 27,
+        category: "UX·운영",
+        question: "사용자가 답변 생성을 취소(Stop)했을 때, 이를 서버에 즉각적으로 전달하여 리소스를 아끼는 용도로 웹소켓이 활용될 수 있다.",
+        answer: true,
+        explanation: "맞아요! SSE는 듣기만 가능해서 별도 요청을 보내야 하지만, 웹소켓은 연결된 선으로 '멈춰!' 신호를 쏘면 서버가 즉시 알아들을 수 있답니다."
+    },
+    {
+        id: 28,
+        category: "UX·운영",
+        question: "여러 사용자가 같은 AI 화면을 공유하며 협업하는 서비스에서는 단방향인 SSE보다 웹소켓이 더 유리하다.",
+        answer: true,
+        explanation: "SSE는 혼자 받는 것에는 좋지만, 내 행동을 다른 사람에게도 알려주는(브로드캐스트) 협업 기능에는 양방향 통신인 웹소켓이 필수적이에요."
+    },
+    {
+        id: 29,
+        category: "UX·운영",
+        question: "CoT(생각의 사슬) 과정을 사용자에게 모두 보여주는 것은 AI의 투명성을 높이기 위해 권장되는 원칙이다.",
+        answer: false,
+        explanation: "CoT는 AI가 더 똑똑한 답을 내기 위한 '속생각' 과정이에요. 사용자에게는 너무 복잡할 수 있어서, 보통은 결론과 정리된 이유만 보여주는 게 좋답니다."
+    },
+    {
+        id: 30,
+        category: "UX·운영",
+        question: "AI의 '생각(CoT)'과 '행동(Walkthrough)'은 투명성을 위해 모두 사용자에게 그대로 노출하는 것이 좋다.",
+        answer: false,
+        explanation: "행동(도구 사용 등)은 신뢰를 위해 보여줘도 좋지만, 날것의 생각(CoT)은 혼란을 줄 수 있어 숨기는 게 일반적이에요. '결과'와 '행동'만 보여주세요!"
     }
 ];
 
@@ -365,5 +435,37 @@ export const SHORT_QUESTIONS = [
         answer: "Fallback(폴백)",
         acceptedAnswers: ["폴백", "fallback", "fall-back", "대체", "대안"],
         explanation: "길이 막혔을 때를 대비한 '비상 도로' 같은 거예요. 에러 화면 대신 친절한 안내나 다른 선택지를 제공하는 것이죠."
+    },
+    {
+        id: 29,
+        category: "UX·운영",
+        question: "사용자가 서비스를 처음 쓰거나 헷갈릴 때, 올바른 순서대로 행동을 안내하여 첫 성공 경험을 돕는 UX 장치를 무엇이라고 할까요?",
+        answer: "Walkthrough(워크쓰루)",
+        acceptedAnswers: ["워크쓰루", "walkthrough", "walk through"],
+        explanation: "마치 옆에서 가이드가 걸어가며(Walk through) 하나씩 알려주는 것처럼, 단계별로 친절하게 안내해 주는 방식을 말해요."
+    },
+    {
+        id: 30,
+        category: "UX·운영",
+        question: "서버가 클라이언트에게 연결을 유지한 채 데이터를 실시간으로 조금씩 보내주는 기술로, AI 스트리밍 답변의 기반이 되는 이것은?",
+        answer: "SSE(Server-Sent Events)",
+        acceptedAnswers: ["sse", "server-sent events", "server sent events"],
+        explanation: "한 번 연결하면 서버가 계속 말을 걸 수 있는 방식(Server-Sent)이라서, AI가 한 글자씩 보내주는 스트리밍 구현에 딱이랍니다."
+    },
+    {
+        id: 31,
+        category: "UX·운영",
+        question: "서버와 클라이언트가 한 번 연결된 상태에서, 마치 전화 통화하듯 양쪽에서 자유롭게 데이터를 주고받을 수 있는 양방향 통신 기술은?",
+        answer: "WebSocket(웹소켓)",
+        acceptedAnswers: ["웹소켓", "websocket", "web socket"],
+        explanation: "전화기처럼 양쪽에서 언제든지 말을 할 수 있는 기술이에요. 채팅이나 실시간 게임처럼 주고받는 게 많을 때 쓰죠."
+    },
+    {
+        id: 32,
+        category: "처리·실행",
+        question: "복잡한 문제를 해결하기 위해 AI가 내부적으로 단계별 추론 과정을 거치며 '속생각'을 하는 기법은 무엇일까요?",
+        answer: "CoT(Chain of Thought)",
+        acceptedAnswers: ["cot", "chain of thought", "생각의 사슬", "연쇄 추론"],
+        explanation: "사람도 어려운 문제를 풀 때 혼잣말을 하며 단계를 밟아가죠? AI도 '단계별로 생각'하게 시키면 훨씬 더 똑똑한 대답을 내놓는답니다."
     }
 ];
