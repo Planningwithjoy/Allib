@@ -41,18 +41,20 @@ const Home = () => {
                             className="concept-card"
                             onClick={() => navigate(`/detail/${item.id}`)}
                         >
-                            <div className="card-header">
-                                <span className="card-category">{item.mainTheme}</span>
-                                <h2 className="card-en-title">{item.enTitle}</h2>
-                                <p className="card-ko-title">{item.koTitle}</p>
-                            </div>
+                            <div className="card-inner">
+                                <div className="card-header">
+                                    <span className="card-category">{item.mainTheme}</span>
+                                    <h2 className="card-en-title">{item.enTitle}</h2>
+                                    <p className="card-ko-title">{item.koTitle}</p>
+                                </div>
 
-                            <div className="card-footer-icon">
-                                <Icon size={48} strokeWidth={1.5} />
-                            </div>
+                                <div className="card-footer-icon">
+                                    <Icon size={48} strokeWidth={1.5} />
+                                </div>
 
-                            <div className="hover-state">
-                                <div className="hover-text">"{item.hoverText}"</div>
+                                <div className="hover-state">
+                                    <div className="hover-text">"{item.hoverText}"</div>
+                                </div>
                             </div>
                         </div>
                     );

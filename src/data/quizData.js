@@ -208,6 +208,20 @@ export const OX_QUESTIONS = [
         question: "AI의 '생각(CoT)'과 '행동(Walkthrough)'은 투명성을 위해 모두 사용자에게 그대로 노출하는 것이 좋다.",
         answer: false,
         explanation: "행동(도구 사용 등)은 신뢰를 위해 보여줘도 좋지만, 날것의 생각(CoT)은 혼란을 줄 수 있어 숨기는 게 일반적이에요. '결과'와 '행동'만 보여주세요!"
+    },
+    {
+        id: 31,
+        category: "지식·이해",
+        question: "온톨로지는 초기에 최대한 상세하고 복잡하게 모든 예외 케이스를 정의해야 나중에 수정할 일이 없다.",
+        answer: false,
+        explanation: "초기에 너무 세밀하면 운영이 어려워져요. 핵심 개념부터 잡고 점진적으로 확장하는 것이 좋습니다."
+    },
+    {
+        id: 32,
+        category: "지식·이해",
+        question: "시멘틱 레이어는 데이터베이스의 물리적 구조를 사용자에게 그대로 보여주기 위한 투명성 도구이다.",
+        answer: false,
+        explanation: "시멘틱 레이어는 복잡한 데이터 구조를 '사용자의 언어(의미)'로 번역해 주는 중간 번역기 역할이에요. 있는 그대로 보여주는 게 아니랍니다."
     }
 ];
 
@@ -467,5 +481,21 @@ export const SHORT_QUESTIONS = [
         answer: "CoT(Chain of Thought)",
         acceptedAnswers: ["cot", "chain of thought", "생각의 사슬", "연쇄 추론"],
         explanation: "사람도 어려운 문제를 풀 때 혼잣말을 하며 단계를 밟아가죠? AI도 '단계별로 생각'하게 시키면 훨씬 더 똑똑한 대답을 내놓는답니다."
+    },
+    {
+        id: 33,
+        category: "지식·이해",
+        question: "정보 시스템의 대상이 되는 자원(단어, 개념)과 그들 간의 관계를 정의하여, AI가 의미론적으로 이해할 수 있게 만든 '개념 지도'는?",
+        answer: "Ontology(온톨로지)",
+        acceptedAnswers: ["온톨로지", "ontology"],
+        explanation: "단어의 단순 나열이 아니라, '이것과 저것은 어떤 관계인가'를 정의해 둔 구조도예요. AI에게 세상을 가르쳐주는 지도와 같죠."
+    },
+    {
+        id: 34,
+        category: "지식·이해",
+        question: "사용자의 '일상 언어'와 시스템의 '데이터 언어' 사이에서 의미를 연결하고 번역해 주는 중간 계층은?",
+        answer: "Semantic Layer(시멘틱 레이어)",
+        acceptedAnswers: ["시멘틱 레이어", "semantic layer", "semanticlayer"],
+        explanation: "데이터베이스가 아무리 복잡해도 사용자가 '내 주문 내역 보여줘'라고 말하면 찰떡같이 알아듣게 해주는 통역사 같은 존재랍니다."
     }
 ];
