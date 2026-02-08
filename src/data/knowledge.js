@@ -894,7 +894,7 @@ export const KNOWLEDGE_DATA = [
             {
                 question: "CoT랑 에이전트 Walkthrough랑 뭐가 다른 것인가요?",
                 answerBlocks: [
-                    { type: 'text', content: '먼저 한 문장으로 정리해 드릴게요.\nCoT는 ‘생각’이고 에이전트 Walkthrough는 ‘행동 기록’입니다.\n\n👉 머릿속 vs 로그\n👉 보통 숨김 vs 보통 공개' },
+                    { type: 'text', content: '먼저 한 문장으로 정리해 드릴게요.\nCoT는 ‘생각’이고 에이전트 Walkthrough는 ‘행동 기록’입니다.' },
                     { type: 'header', content: '① CoT는 무엇인가 (속생각)' },
                     { type: 'desc', content: '사람으로 치면 이런 것입니다.\n• 문제를 보자마자 머릿속에서\n• 조건 따지고, 가설 세우고, 계산하고, 결론 내리는 과정\n\n이 머릿속 흐름이 CoT입니다.\n중요한 포인트는 "사용자에게 보여주기 위한 게 아니라, AI가 잘 생각하기 위해 내부에서 쓰는 것"이라는 점입니다.' },
                     { type: 'header', content: '② 에이전트 Walkthrough는 무엇인가 (행동 일지)' },
@@ -924,6 +924,37 @@ export const KNOWLEDGE_DATA = [
             "온톨로지 없이 GraphRAG부터 만들면 실패 확률 높음",
             "“검색”이 아니라 “이해 경로를 설계하는 문제”로 접근필요",
             "그래프를 구축하고 순회하는 비용(Token, Time)이 단순 검색보다 훨씬 높다는 점을 고려"
+        ],
+        faqs: [
+            {
+                question: "RAG와 GraphRAG의 차이점이 무엇인가요?",
+                answerBlocks: [
+                    { type: 'text', content: '먼저 한 줄로 차이부터 말씀드리면,\nRAG는 “비슷한 문서”를 가져오고 GraphRAG는 “연결된 개념”을 따라갑니다.\n문서 중심 vs 관계 중심의 차이입니다.' },
+                    { type: 'header', content: '① RAG부터 다시 정확히 잡자' },
+                    { type: 'desc', content: '질문: “환불은 언제 가능해?”\n\nRAG의 사고 방식:\n• 이 질문과 의미가 비슷한 문서는 뭐지?\n• 그 문서 몇 개를 가져오자\n• 그 안에서 답을 만들자\n\n즉, 문서 중심의 검색 + 생성 방식입니다.\n그래서 임베딩, 벡터 검색, 문서 조각(청크)이 핵심입니다.\n\nRAG가 잘하는 질문:\n• “이게 뭐야?”\n• “설명해줘”\n• “정책 알려줘”\n• “요약해줘”\n\n즉, 답이 한 문서 안에 있는 질문에 강합니다.' },
+                    { type: 'header', content: '② GraphRAG는 발상이 다르다' },
+                    { type: 'desc', content: '질문: “A 정책이 B 정책에 영향을 주는 경우는 언제야?”\n\nGraphRAG의 사고 방식:\n• A 정책은 어떤 개념이지?\n• B 정책과 어떤 관계가 있지?\n• 그 사이에 연결된 개념들을 따라가 보자\n\n즉, 문서가 아니라 개념(Node)과 관계(Edge)를 봅니다.\n\nGraphRAG가 잘하는 질문:\n• “왜 이런 결과가 나왔어?”\n• “이게 저거랑 어떻게 연결돼?”\n• “이 이슈의 원인이 뭐야?”\n• “흐름으로 설명해줘”\n\n즉, 답이 여러 지식의 연결에 있는 질문에 강합니다.' },
+                    { type: 'header', content: '③ 제일 중요한 차이 한 번에 정리' },
+                    {
+                        type: 'table',
+                        content: {
+                            headers: ['구분', 'RAG', 'GraphRAG'],
+                            rows: [
+                                ['기준', '문서 유사도', '개념 관계'],
+                                ['검색 방식', '벡터 검색', '그래프 탐색'],
+                                ['기본 단위', '문서/청크', 'Node/Edge'],
+                                ['강점', '단순·빠름', '복합 추론'],
+                                ['약점', '맥락 단절', '설계 비용']
+                            ]
+                        }
+                    },
+                    { type: 'header', content: '④ 왜 RAG만 쓰면 한계가 오냐' },
+                    { type: 'desc', content: 'RAG의 구조적 한계는 문서 A, B, C를 따로따로 본다는 점입니다.\n이 셋을 “연결해서 이해해야 하는 질문”에는 약합니다.\n\n그래서 답변이 단편적이거나, 그럴듯하지만 흐름이 없는 경우가 생깁니다.\n검색은 맞는데 이해가 부족한 것이죠.' },
+                    { type: 'header', content: '⑤ GraphRAG는 그럼 만능인가?' },
+                    { type: 'desc', content: '절대 아닙니다. GraphRAG는 비용이 큽니다.\n\n• 온톨로지 필요\n• Node/Edge 설계 필요\n• 관계 유지 비용 큼\n\n그래서 실무에서는 “RAG → 한계 지점에서만 GraphRAG로 확장” 하는 흐름이 가장 현실적입니다.' },
+                    { type: 'summary', content: '기획자가 써야 할 판단 질문:\n“답이 한 문서 안에 있는가, 아니면 여러 개념의 관계에 있는가?”\n\n• 한 문서 → RAG\n• 관계 → GraphRAG' }
+                ]
+            }
         ]
     },
 
@@ -1077,6 +1108,46 @@ export const KNOWLEDGE_DATA = [
             "RAG에서 “문서 찾기” 역할 담당",
             "의미 판단은 모델, 속도는 Elastic Search가 책임",
             "키워드 검색과 벡터 검색을 결합한 하이브리드 검색 구현에 최적화되어 있음"
+        ],
+        faqs: [
+            {
+                question: "Elastic Search와 Retriever의 차이점이 무엇인가요?",
+                answerBlocks: [
+                    { type: 'text', content: '먼저 한 줄로 핵심 차이를 정리해 드립니다.\nElastic Search는 ‘찾아주는 시스템’이고\nRetriever는 ‘무엇을, 어떻게 찾을지 결정하는 역할’입니다.' },
+                    { type: 'header', content: '① 이 둘이 왜 자꾸 헷갈릴까' },
+                    { type: 'desc', content: '이유는 간단합니다. 실제로 같이 쓰이는 경우가 90%라서 그렇습니다.\n\nRAG 구조에서 보통 이렇게 보입니다.\n• Retriever가 문서를 찾는다\n• 그 밑에서 Elastic Search가 돌아간다\n\n그래서 이름만 들으면 “어? 같은 거 아냐?” 싶어지지만, 역할 레벨이 다릅니다.' },
+                    { type: 'header', content: '② Elastic Search부터 정확히 잡자' },
+                    { type: 'desc', content: 'Elastic Search는 무엇이냐면\n• 문서가 잔뜩 들어 있는 곳\n• 아주 빠르게 검색해 주는 시스템\n\nElastic Search는 스스로 “이 질문에 뭘 찾아야 하지?”를 고민하지 않습니다.\n그냥 “이 조건이면, 이 기준으로 찾아줄게”라고 합니다.\n시키는 대로만 수행합니다.\n\n비유: 도서관 검색 시스템\n• “환불” 들어간 책 찾아줘\n• “이 문장이랑 비슷한 책 찾아줘”\n\n빠르게 찾아줄 뿐, 스스로 판단하지는 않습니다.' },
+                    { type: 'header', content: '③ Retriever는 무엇이냐면' },
+                    { type: 'desc', content: 'Retriever는 판단자입니다.\n\nRetriever는 이렇게 생각합니다.\n• 이 질문은\n• 정책 질문인가?\n• 사용법 질문인가?\n• 키워드로 찾을까?\n• 시멘틱 서치로 찾을까?\n• 몇 개를 가져올까?\n\n결국 ‘검색 전략’을 정하는 역할입니다.\n\n비유: 사서\n• 이 질문이면\n• 이 코너로 가야겠네\n• 이 책 몇 권이면 되겠다\n\n이후, 도서관 시스템(Elastic Search)에 요청합니다.' },
+                    { type: 'header', content: '④ 실제 RAG 흐름으로 보면 딱 보인다' },
+                    { type: 'desc', content: '질문: “환불 기간 알려줘”\n\nRetriever가 하는 일:\n1. 질문 의도 파악\n2. “정책 관련 질문이네” 판단\n3. “정책 문서에서 찾자” 결정\n4. “상위 3개 문서면 충분” 결정\n\nElastic Search가 하는 일:\n• 정책 문서 인덱스에서\n• 의미/키워드 기준으로\n• 상위 3개 문서 반환\n\n검색이 완료됩니다.' },
+                    { type: 'header', content: '⑤ 그래서 역할을 이렇게 외우면 안 헷갈린다' },
+                    { type: 'desc', content: '• Elastic Search = 어디서 찾는가\n• Retriever = 무엇을, 어떻게 찾을 것인가' },
+                    { type: 'header', content: '⑥ 중요한 함정 하나' },
+                    { type: 'desc', content: '[X] Retriever = Elastic Search\n[X] Retriever = 벡터 DB\n\n[O] Retriever는\n• 로직\n• 정책\n• 선택 기준\n\n입니다. 그래서 Elastic Search 위에, Vector DB 위에, 심지어 DB 위에도 Retriever를 얹을 수 있습니다.' },
+                    { type: 'header', content: '⑦ 한눈에 비교하기' },
+                    {
+                        type: 'table',
+                        content: {
+                            headers: ['구분', 'Elastic Search', 'Retriever'],
+                            rows: [
+                                ['한 줄 정의', '빠르게 찾아주는 검색 시스템', '무엇을 어떻게 찾을지 정하는 로직'],
+                                ['성격', '시스템(엔진)', '판단(전략)'],
+                                ['역할 위치', '검색 실행 담당', '검색 전 의사결정 담당'],
+                                ['스스로 판단 여부', '판단 안 함', '판단함'],
+                                ['입력', '검색 조건, 쿼리', '사용자 질문'],
+                                ['출력', '문서/청크 목록', '검색 전략 + 요청'],
+                                ['검색 기준', '키워드, 필터, 벡터 유사도', '질문 의도, 도메인, 정책'],
+                                ['AI 여부', 'AI 아님', 'AI일 수도 / 규칙일 수도'],
+                                ['교체 가능성', '낮음 (인프라)', '높음 (로직)'],
+                                ['RAG에서 위치', 'Retriever 아래', 'Retriever 자체'],
+                                ['GraphRAG에서', '그래프 탐색 결과 저장·조회', '탐색 시작점·확장 전략 결정']
+                            ]
+                        }
+                    }
+                ]
+            }
         ]
     },
 

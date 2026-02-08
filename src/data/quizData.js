@@ -236,6 +236,20 @@ export const OX_QUESTIONS = [
         question: "GraphRAG는 모든 RAG 시스템에서 Vector Search보다 훌륭한 성능을 내므로 무조건 도입하는 것이 좋다.",
         answer: false,
         explanation: "GraphRAG는 비용이 비싸고 구축이 어려워요. 단순 질문은 Vector Search가 훨씬 빠르고 싸답니다. 관계가 복잡할 때만 쓰세요!"
+    },
+    {
+        id: 35,
+        category: "처리·실행",
+        question: "답이 하나의 문서 안에 명확히 있는 단순 정보 검색 질문(예: '환불 규정 알려줘')에는 GraphRAG가 일반 RAG보다 훨씬 효율적이다.",
+        answer: false,
+        explanation: "답이 한 문서에 있으면 일반 RAG(벡터 검색)가 훨씬 싸고 빠르고 정확해요. GraphRAG는 여러 문서를 연결해서 추론해야 할 때 쓰는 '고비용' 도구입니다."
+    },
+    {
+        id: 36,
+        category: "연결·확장",
+        question: "Elastic Search가 있으면 Retriever는 필요 없다.",
+        answer: false,
+        explanation: "Elastic Search는 '검색 엔진(도구)'이고, Retriever는 '어떻게 검색할지 결정하는 전략(두뇌)'이에요. 도구가 있어도 사용법을 아는 두뇌가 필요하겠죠?"
     }
 ];
 
@@ -527,5 +541,21 @@ export const SHORT_QUESTIONS = [
         answer: "GraphRAG(그래프 RAG)",
         acceptedAnswers: ["graphrag", "그래프rag", "graph rag", "그래프 랙", "그래프 rag"],
         explanation: "꼬리에 꼬리를 무는 질문처럼, 'A랑 연관된 B, B랑 연관된 C'를 따라가며 흩어진 단서를 모으는 탐정 같은 방식이에요."
+    },
+    {
+        id: 37,
+        category: "처리·실행",
+        question: "질문에 대한 답이 하나의 문서에 있지 않고, 여러 지식 간의 '연관계'를 파악해야만 알 수 있을 때 가장 강력한 검색 기술은?",
+        answer: "GraphRAG(그래프 RAG)",
+        acceptedAnswers: ["graphrag", "그래프rag", "graph rag", "그래프 rag"],
+        explanation: "단편적인 지식 검색이 아니라, '이것과 저것이 어떻게 연결되는지' 맥락을 파악해야 할 때 진가를 발휘하는 기술이에요."
+    },
+    {
+        id: 38,
+        category: "연결·확장",
+        question: "사용자의 질문을 분석하여 '어떤 문서가 필요한지', '어떤 검색 방식을 쓸지'를 결정하고 가져오는 RAG의 두뇌 역할은?",
+        answer: "Retriever(리트리버)",
+        acceptedAnswers: ["retriever", "리트리버", "검색기"],
+        explanation: "Elastic Search가 '도서관'이라면, Retriever는 책을 찾아주는 '사서'예요. 질문의 의도를 파악하고 적절한 문서를 찾아오는 역할을 하죠."
     }
 ];
