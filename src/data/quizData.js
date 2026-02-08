@@ -222,6 +222,20 @@ export const OX_QUESTIONS = [
         question: "시멘틱 레이어는 데이터베이스의 물리적 구조를 사용자에게 그대로 보여주기 위한 투명성 도구이다.",
         answer: false,
         explanation: "시멘틱 레이어는 복잡한 데이터 구조를 '사용자의 언어(의미)'로 번역해 주는 중간 번역기 역할이에요. 있는 그대로 보여주는 게 아니랍니다."
+    },
+    {
+        id: 33,
+        category: "연결·확장",
+        question: "Elastic Search는 AI 모델처럼 문서의 의미를 깊게 이해하고 추론하여 정답을 생성하는 도구이다.",
+        answer: false,
+        explanation: "Elastic Search는 '검색'을 엄청 빠르게 잘하는 도구이지, AI처럼 내용을 이해하거나 생성하는 도구가 아니에요. 찾는 건 얘가 하고, 읽는 건 AI가 합니다."
+    },
+    {
+        id: 34,
+        category: "처리·실행",
+        question: "GraphRAG는 모든 RAG 시스템에서 Vector Search보다 훌륭한 성능을 내므로 무조건 도입하는 것이 좋다.",
+        answer: false,
+        explanation: "GraphRAG는 비용이 비싸고 구축이 어려워요. 단순 질문은 Vector Search가 훨씬 빠르고 싸답니다. 관계가 복잡할 때만 쓰세요!"
     }
 ];
 
@@ -497,5 +511,21 @@ export const SHORT_QUESTIONS = [
         answer: "Semantic Layer(시멘틱 레이어)",
         acceptedAnswers: ["시멘틱 레이어", "semantic layer", "semanticlayer"],
         explanation: "데이터베이스가 아무리 복잡해도 사용자가 '내 주문 내역 보여줘'라고 말하면 찰떡같이 알아듣게 해주는 통역사 같은 존재랍니다."
+    },
+    {
+        id: 35,
+        category: "연결·확장",
+        question: "문서나 데이터를 미리 저장해 두고, AI가 필요로 할 때 관련 정보를 매우 빠르게 찾아주는 '검색 허브' 시스템은?",
+        answer: "Elastic Search(엘라스틱 서치)",
+        acceptedAnswers: ["엘라스틱서치", "엘라스틱 서치", "elasticsearch", "elastic search"],
+        explanation: "도서관의 사서처럼 책(데이터)을 엄청 잘 정리해 두고, AI가 '이런 내용 찾아줘' 하면 0.1초 만에 가져다주는 역할을 해요."
+    },
+    {
+        id: 36,
+        category: "처리·실행",
+        question: "단순 텍스트 검색이 아니라, 개념(Node)과 관계(Edge)의 연결 고리를 따라가며 지식을 찾아내는 RAG 방식은?",
+        answer: "GraphRAG(그래프 RAG)",
+        acceptedAnswers: ["graphrag", "그래프rag", "graph rag", "그래프 랙", "그래프 rag"],
+        explanation: "꼬리에 꼬리를 무는 질문처럼, 'A랑 연관된 B, B랑 연관된 C'를 따라가며 흩어진 단서를 모으는 탐정 같은 방식이에요."
     }
 ];

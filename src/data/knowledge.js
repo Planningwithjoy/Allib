@@ -908,6 +908,24 @@ export const KNOWLEDGE_DATA = [
             }
         ]
     },
+    {
+        id: "graphrag",
+        enTitle: "GraphRAG",
+        koTitle: "그래프 RAG",
+        mainTheme: "처리·실행",
+        icon: "GitPullRequest",
+        hoverText: "관계탐색",
+        chipIcon: "Share2",
+        description: "문서 그대로 검색하는 대신 개념(Node)과 관계(Edge)로\n이루어진 그래프를 따라가며, 필요한 지식을 모아\n답변하는 RAG 방식",
+        fullContent: `🧠 “이 개념은 무엇과 연결돼 있지?”를 기준으로\n📍 관련 정보를 확장 탐색\n\n답이 한 문서에 없고 여러 지식이 엮여 있을수록 강함`,
+        bullets: [
+            "GraphRAG는 모든 RAG에 필요한 구조는 아님",
+            "지식 간 관계가 중요할수록 효과적",
+            "온톨로지 없이 GraphRAG부터 만들면 실패 확률 높음",
+            "“검색”이 아니라 “이해 경로를 설계하는 문제”로 접근필요",
+            "그래프를 구축하고 순회하는 비용(Token, Time)이 단순 검색보다 훨씬 높다는 점을 고려"
+        ]
+    },
 
     // 3. 연결·확장 (Expansion) - 기초 연결부터 표준까지
     {
@@ -1041,6 +1059,24 @@ export const KNOWLEDGE_DATA = [
                     { type: 'summary', content: 'Tool Calling 없이 MCP만 있으면 AI가 도구를 왜 써야 하는지 모르고,\nMCP 없이 Tool Calling만 있으면 도구마다 사용법이 달라 난장판이 됩니다.\n둘은 상호 보완적인 관계입니다.' }
                 ]
             }
+        ]
+    },
+    {
+        id: "elasticsearch",
+        enTitle: "Elastic Search",
+        koTitle: "엘라스틱 서치",
+        mainTheme: "연결·확장",
+        icon: "SearchCode",
+        hoverText: "검색허브",
+        chipIcon: "Database",
+        description: "데이터를 저장해 두고 필요할 때 매우 빠르게 찾아서\n다른 시스템이나 AI에게 전달해 주는 검색 시스템",
+        fullContent: `📦 문서·로그·텍스트를 미리 정리해 두고\n🔍 요청이 오면 관련 있는 것만 즉시 꺼내줌\n\nAI처럼 생각하지는 않지만 AI가 참고할 재료를 연결해 주는 역할을 함`,
+        bullets: [
+            "자연어·유사도 검색이 많으면 Elastic Search가 유리",
+            "Elastic Search는 지식을 “이해”하지 않음",
+            "RAG에서 “문서 찾기” 역할 담당",
+            "의미 판단은 모델, 속도는 Elastic Search가 책임",
+            "키워드 검색과 벡터 검색을 결합한 하이브리드 검색 구현에 최적화되어 있음"
         ]
     },
 
