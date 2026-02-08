@@ -232,15 +232,17 @@
     color: var(--error);
 }
 
-.ox-btn:hover {
-    border-color: var(--primary);
-    background-color: var(--surface-hover);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
+@media (hover: hover) {
+    .ox-btn:hover {
+        border-color: var(--primary);
+        background-color: var(--surface-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+    }
 
-.x-btn:hover {
-    border-color: var(--error);
+    .x-btn:hover {
+        border-color: var(--error);
+    }
 }
 
 .ox-label {
