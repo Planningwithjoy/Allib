@@ -1017,7 +1017,7 @@ export const KNOWLEDGE_DATA = [
     {
         id: "mcp",
         enTitle: "MCP",
-        koTitle: "모델 컨텍스트 프로토콜",
+        koTitle: "Model Context Protocol",
         mainTheme: "연결·확장",
         icon: "ShieldCheck",
         hoverText: "사용 규칙",

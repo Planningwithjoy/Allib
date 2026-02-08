@@ -324,7 +324,7 @@ export const SHORT_QUESTIONS = [
         id: 11,
         category: "연결·확장",
         question: "AI 모델이 외부의 도구(Tool)나 시스템과 표준화된 방식으로 연결되어 상호작용할 수 있게 해주는 프로토콜은? (영어 약자)",
-        answer: "MCP(모델 컨텍스트 프로토콜)",
+        answer: "MCP(Model Context Protocol)",
         acceptedAnswers: ["mcp", "model context protocol"],
         explanation: "Model Context Protocol의 약자로, AI가 다양한 앱이나 데이터에 안전하고 쉽게 접속할 수 있게 해주는 '만능 열쇠' 같은 표준 규약이에요."
     },
