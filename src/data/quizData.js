@@ -250,6 +250,27 @@ export const OX_QUESTIONS = [
         question: "Elastic Search가 있으면 Retriever는 필요 없다.",
         answer: false,
         explanation: "Elastic Search는 '검색 엔진(도구)'이고, Retriever는 '어떻게 검색할지 결정하는 전략(두뇌)'이에요. 도구가 있어도 사용법을 아는 두뇌가 필요하겠죠?"
+    },
+    {
+        id: 37,
+        category: "연결·확장",
+        question: "Elastic Search를 설치하면 별도의 설정이나 모델 없이도 바로 사람처럼 의미를 이해하는 '시멘틱 서치'가 가능하다.",
+        answer: false,
+        explanation: "Elastic Search는 빠르지만, 의미 파악은 못 해요. 시멘틱 서치를 하려면 별도의 '임베딩 모델'이 의미를 숫자로 바꿔줘야 해요."
+    },
+    {
+        id: 38,
+        category: "지식·이해",
+        question: "AI 모델의 Temperature나 Top_P 같은 설정값은 모델이 학습을 통해 얻은 '모델 매개변수'에 해당한다.",
+        answer: false,
+        explanation: "Temperature 등은 '추론 설정값'이에요. 모델의 성격(파라미터)을 바꾸는 게 아니라, 답변하는 태도만 조절하는 것이죠."
+    },
+    {
+        id: 39,
+        category: "연결·확장",
+        question: "Webhook은 사용자가 요청했을 때만 데이터를 가져오는 '요청 기반' 통신 방식이다.",
+        answer: false,
+        explanation: "Webhook은 요청 기반이 아니라 '이벤트 기반'이에요. 특정 사건이 발생했을 때 서버가 알아서 데이터를 밀어넣어 주는 방식이랍니다."
     }
 ];
 
@@ -282,7 +303,7 @@ export const SHORT_QUESTIONS = [
         id: 4,
         category: "지식·이해",
         question: "인간의 뇌 신경망을 모방하여 만든 기계 학습 모델의 핵심 구성 요소로 숫자로 이루어진 설정값을 무엇이라고 할까요?",
-        answer: "Parameter(파라미터)",
+        answer: "Parameter(파라미터(매개변수))",
         acceptedAnswers: ["파라미터", "parameter", "parameters", "매개변수"],
         explanation: "파라미터(매개변수)는 AI 모델 내부의 설정값들이에요. 학습을 통해 이 값들이 조정되면서 AI가 똑똑해지는 것이죠."
     },
@@ -557,5 +578,173 @@ export const SHORT_QUESTIONS = [
         answer: "Retriever(리트리버)",
         acceptedAnswers: ["retriever", "리트리버", "검색기"],
         explanation: "Elastic Search가 '도서관'이라면, Retriever는 책을 찾아주는 '사서'예요. 질문의 의도를 파악하고 적절한 문서를 찾아오는 역할을 하죠."
+    },
+    {
+        id: 39,
+        category: "연결·확장",
+        question: "사용자가 입력한 키워드가 문서에 없더라도, 문맥과 의도를 파악하여 의미가 유사한 문서를 찾아내는 검색 기술은?",
+        answer: "Semantic Search(시멘틱 서치)",
+        acceptedAnswers: ["semantic search", "시멘틱 서치", "시멘틱서치", "semanticsearch"],
+        explanation: "단어 모양이 달라도 뜻이 통하면 찾아줘요. '배고파'라고 검색하면 '맛집'을 찾아주는 센스 있는 검색 방식이죠."
+    },
+    {
+        id: 40,
+        category: "지식·이해",
+        question: "모델의 성격(가중치)은 그대로 둔 채, 답변의 창의성이나 길이를 조절하기 위해 실행 시점에 사용자가 입력하는 설정값들을 무엇이라고 부를까요?",
+        answer: "Inference Settings(추론 매개변수)",
+        acceptedAnswers: ["추론 매개변수", "추론 설정값", "inference settings", "inference setting", "추론설정값"],
+        explanation: "모델 자체를 바꾸는 게 아니라, 이미 만들어진 모델이 대답할 때의 '온도'나 '길이'만 살짝 만져주는 설정값들이에요."
+    },
+    {
+        id: 41,
+        category: "지식·이해",
+        question: "버티컬 AI는 범용 AI보다 창의적인 답변을 생성하는 것이 가장 큰 목적이다.",
+        answer: "X",
+        explanation: "버티컬 AI는 창의성보다는 특정 분야에서의 안정성과 일관성, 그리고 명확한 기준에 따른 답변이 우선인 영역에 적합합니다.",
+        type: "ox"
+    },
+    {
+        id: 42,
+        category: "지식·이해",
+        question: "특정 산업이나 도메인에 집중하여, 해당 분야의 맥락에 맞게 깊고 안정적으로 답변하도록 설계된 전문화된 AI를 무엇이라고 할까요?",
+        answer: "Vertical AI(버티컬 AI)",
+        acceptedAnswers: ["vertical ai", "버티컬 ai", "버티컬ai", "verticalai", "버티컬 에이아이"],
+        explanation: "즉, 범위는 좁히고 전문성을 높인 AI입니다. 온톨로지나 시멘틱 레이어 같은 도메인 설계가 핵심입니다."
+    },
+    {
+        id: 43,
+        category: "처리·실행",
+        question: "스킬을 도입하면 AI 에이전트가 같은 질문에 대해 매번 다르게 행동하고 결과 포맷이 흔들리는 것을 방지할 수 있다.",
+        answer: "O",
+        explanation: "스킬은 자주 쓰는 행동을 고정된 기능으로 정의하기 때문에, 매번 자연어로만 지시할 때 발생하는 불명확함을 해결해 줍니다.",
+        type: "ox"
+    },
+    {
+        id: 44,
+        category: "처리·실행",
+        question: "자주 반복되는 행동을 '이름 붙인 기능'으로 고정하여 입력, 출력, 도구 사용법 등을 미리 정의해 둔 업무 단위를 무엇이라고 할까요?",
+        answer: "Skill(스킬)",
+        acceptedAnswers: ["skill", "스킬", "skills"],
+        explanation: "즉, 모호한 자연어 명령을 예측 가능한 기능 단위로 규격화한 것이 스킬입니다."
+    },
+    {
+        id: 45,
+        category: "UX·운영",
+        question: "섀도우 AI 문제의 근본적인 원인은 공식 AI 서비스가 사용자의 업무 요구사항을 제대로 충족하지 못하는 구조에 있다.",
+        answer: "O",
+        explanation: "단순히 사용자가 규칙을 어기는 것이 아니라, 공식 도구가 불편하거나 느려서 업무 효율을 위해 개인 도구를 찾게 되는 경우가 핵심입니다.",
+        type: "ox"
+    },
+    {
+        id: 46,
+        category: "UX·운영",
+        question: "조직이 공식적으로 승인하거나 제공하지 않았음에도 구성원들이 업무 효율을 위해 개인적으로 사용하는 AI 도구를 무엇이라고 할까요?",
+        answer: "Shadow AI(섀도우 AI)",
+        acceptedAnswers: ["shadow ai", "섀도우 ai", "shadowai", "섀도우ai", "그림자 ai"],
+        explanation: "즉, 비공식적으로 사용되는 AI를 의미하며 보안 및 정책 통제가 불가능한 리스크를 안고 있습니다."
+    },
+    {
+        id: 47,
+        category: "UX·운영",
+        question: "탈옥(Jailbreak)은 기술적인 해킹을 통해서만 발생하며, 대화의 맥락이나 역할을 바꾸는 것만으로는 발생하지 않는다.",
+        answer: "X",
+        explanation: "탈옥은 기술적 결함보다는 질문의 맥락, 가상의 역할 부여 등 언어적 유도를 통해 안전 규칙을 우회하려는 시도가 주를 이룹니다.",
+        type: "ox"
+    },
+    {
+        id: 48,
+        category: "UX·운영",
+        question: "AI에 설정된 안전 규칙이나 제한을 질문의 맥락, 역할, 조건을 교묘히 바꾸어 우회하거나 무력화하려는 시도를 무엇이라고 할까요?",
+        answer: "Jailbreak(탈옥)",
+        acceptedAnswers: ["jailbreak", "탈옥", "제일브레이크", "jail break"],
+        explanation: "즉, AI의 방어 기제를 속여 금지된 답변을 끌어내려는 규칙 우회 행위입니다."
+    },
+    {
+        id: 49,
+        category: "UX·운영",
+        question: "프롬프트 인젝션은 AI가 문서에 포함된 '내용'과 사용자의 '행동 지시'를 명확히 구분하지 못할 때 발생한다.",
+        answer: "O",
+        explanation: "외부 데이터에 포함된 '무시하고 다음을 수행해'와 같은 지시문을 AI가 시스템 지시보다 우선시하게 될 때 인젝션이 발생합니다.",
+        type: "ox"
+    },
+    {
+        id: 50,
+        category: "UX·운영",
+        question: "사용자 입력이나 외부 데이터 안에 숨겨진 지시문이 AI의 원래 지시를 덮어쓰거나 왜곡하여 의도치 않은 동작을 유도하는 현상을 무엇이라고 할까요?",
+        answer: "Prompt Injection(프롬프트 인젝션)",
+        acceptedAnswers: ["prompt injection", "프롬프트 인젝션", "프롬프트인젝션", "지시오염"],
+        explanation: "즉, 데이터가 명령으로 오인되어 AI의 기존 지시 체계를 오염시키는 현상을 의미합니다."
+    },
+    {
+        id: 51,
+        category: "UX·운영",
+        question: "AI 가드레일은 답변의 출력 단계뿐만 아니라 입력, 지식 검색, 추론 등 서비스 전 과정에 걸쳐 적용되어야 한다.",
+        answer: "O",
+        explanation: "가드레일은 어느 한 지점이 아니라 시스템 전체 레이어에서 다각도로 작동하도록 설계해야 효과적입니다.",
+        type: "ox"
+    },
+    {
+        id: 52,
+        category: "UX·운영",
+        question: "AI가 안전 기준을 벗어난 위험한 답변을 하거나 의도치 않은 행동을 하지 않도록 전 과정에 설정하는 안전 설계 체계를 무엇이라고 할까요?",
+        answer: "AI 가드레일(AI Guardrail)",
+        acceptedAnswers: ["ai guardrail", "ai 가드레일", "가드레일", "가드 레일", "안전설계"],
+        explanation: "즉, AI의 사고를 막으면서도 본래의 기능을 원활히 수행하도록 돕는 안전장치입니다."
+    },
+    {
+        id: 53,
+        category: "UX·운영",
+        question: "AI 레드티밍은 AI 시스템이 정상적인 상황에서 얼마나 답변을 정확하게 하는지 측정하는 것이 주된 목적이다.",
+        answer: "N",
+        explanation: "레드티밍은 정상 범위를 넘어선 비정상적이거나 악의적인 사용을 가정하여 취약점을 점검하는 활동입니다.",
+        type: "ox"
+    },
+    {
+        id: 54,
+        category: "UX·운영",
+        question: "AI 시스템의 취약점과 잠재적 사고 가능성을 찾기 위해 의도적으로 규칙을 우회하거나 위험한 상황을 유도하여 검증하는 활동을 무엇이라고 할까요?",
+        answer: "AI 레드티밍(AI Red Teaming)",
+        acceptedAnswers: ["ai red teaming", "ai 레드티밍", "레드티밍", "레드 티밍", "위험검증"],
+        explanation: "즉, AI의 약점을 미리 파악하여 실제 사고로 이어지기 전에 방어 체계를 고도화하는 실전형 검증 프로세스입니다."
+    },
+    {
+        id: 55,
+        category: "UX·운영",
+        question: "AI 리터러시는 단순히 질문을 잘 던지는 프롬프트 작성 능력이나 도구 사용 능력만을 의미한다.",
+        answer: "N",
+        explanation: "AI 리터러시는 도구의 작동 원리와 한계(환각 등)를 이해하고 답변을 비판적으로 판단하여 활용하는 능력을 포함합니다.",
+        type: "ox"
+    },
+    {
+        id: 56,
+        category: "UX·운영",
+        question: "AI의 작동 원리와 한계를 명확히 이해하고, AI가 제공하는 정보를 무조건 신뢰하는 대신 비판적으로 검증하며 활용하는 능력을 무엇이라고 할까요?",
+        answer: "AI 리터러시(AI Literacy)",
+        acceptedAnswers: ["ai literacy", "ai 리터러시", "리터러시", "판단역량", "비판적 활용"],
+        explanation: "즉, AI를 도구로서 주도적으로 활용하기 위해 필수적인 비판적 이해 및 판단 능력을 의미합니다."
+    },
+    {
+        id: 57,
+        category: "처리·실행",
+        question: "Few-shot 방식은 모델의 파라미터를 직접 수정하여 AI를 재학습시키는 과정이다.",
+        answer: "N",
+        explanation: "Few-shot은 재학습이 아니라, 프롬프트에 예시를 넣어 모델이 추론 시점에 패턴을 참고하게 만드는 방식입니다.",
+        type: "ox"
+    },
+    {
+        id: 58,
+        category: "처리·실행",
+        question: "AI에게 몇 개의 구체적인 입력-출력 예시를 제공하여, 별도의 재학습 없이도 원하는 답변 패턴을 따라 하도록 유도하는 기법을 무엇이라고 할까요?",
+        answer: "Few-shot(예시학습)",
+        acceptedAnswers: ["few shot", "few-shot", "퓨샷", "퓨 샷", "예시학습", "예시 학습"],
+        explanation: "즉, 설명보다 예시를 더 잘 이해하는 AI의 특성을 활용해 프롬프트만으로 성능을 개선하는 효율적인 기법입니다."
+    },
+    {
+        id: 26,
+        category: "연결·확장",
+        question: "특정 이벤트가 발생했을 때 다른 시스템에 자동으로 알림이나 데이터를 보내는 방식을 무엇이라고 할까요?",
+        answer: "Webhook(웹훅)",
+        acceptedAnswers: ["웹훅", "webhook", "web hook"],
+        explanation: "이벤트가 발생하면 즉시 알려주는 '자동 알림' 시스템이에요. AI가 작업을 마치거나 승인이 필요할 때 외부 시스템과 소통하는 핵심 수단이죠."
     }
 ];

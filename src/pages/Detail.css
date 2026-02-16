@@ -403,12 +403,17 @@
     display: block;
 }
 
-/* 첫 번째 열(구분) 강조 */
+/* 첫 번째 열(단계/유형) 너비 축소 */
 .faq-answer-table-wrapper td:first-child {
     font-weight: 500;
     color: var(--text);
     background-color: rgba(0, 0, 0, 0.02);
-    width: 25%;
+    width: 28%;
+}
+
+/* 세 번째 열 너비 조정 (2열과 균형) */
+.faq-answer-table-wrapper td:nth-child(3) {
+    width: 31%;
 }
 
 @keyframes fadeIn {
