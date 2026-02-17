@@ -434,6 +434,60 @@
     }
 }
 
+@media (max-width: 600px) {
+    .detail-container {
+        padding: 0 4px;
+    }
+
+    .back-link {
+        margin-bottom: 32px;
+    }
+
+    .detail-hero {
+        margin-bottom: 24px;
+    }
+
+    .detail-title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .detail-title {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .detail-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.6;
+    }
+
+    .detail-card {
+        padding: 24px;
+    }
+
+    .description-rich-text,
+    .full-content-box {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .faq-question {
+        padding: 24px;
+        font-size: 1.05rem;
+    }
+
+    .faq-answer {
+        padding: 0 24px 24px 24px;
+    }
+
+    .faq-answer-table-wrapper td {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+    }
+}
+
 /* FAQ Code Block (ChatGPT Style) */
 .faq-answer-code-block {
     background-color: #F9FAFB;
