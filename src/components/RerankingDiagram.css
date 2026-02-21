@@ -127,14 +127,18 @@
     color: var(--primary);
 }
 
-/* 모바일: 가로 스크롤로 PC 레이아웃 보존 */
-@media (max-width: 768px) {
+/* 모바일: SVG viewBox(800×860px) 기준 고정 너비로 가로 스크롤 */
+@media (max-width: 800px) {
     .rr-diagram-wrapper {
-        padding: 40px 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 40px 0 16px;
     }
 
     .rr-layout-grid {
-        min-width: 680px;
+        width: 800px;
+        max-width: none;
         margin: 0;
     }
 }

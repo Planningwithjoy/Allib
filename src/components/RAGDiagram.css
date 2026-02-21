@@ -251,20 +251,19 @@
     z-index: 5;
 }
 
-/* Mobile: 가로 스크롤로 PC 레이아웃 보존 */
-@media (max-width: 768px) {
+/* Mobile: SVG viewBox 기준 고정 너비로 가로 스크롤 */
+@media (max-width: 900px) {
     .rag-diagram-wrapper {
         overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
         padding-top: 60px;
-        align-items: flex-start;
-        /* Alignment */
     }
 
     .rag-layout-grid {
-        /* Force horizontal layout even on mobile */
         flex-direction: row;
-        min-width: 700px;
-        /* Ensure enough width */
+        width: 900px;
+        max-width: none;
         padding-bottom: 20px;
     }
 }
