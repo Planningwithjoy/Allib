@@ -25,10 +25,11 @@ const AppContent = () => {
         <div className={`app-container ${isMenuOpen ? 'menu-open' : ''}`}>
             <ScrollToTop />
             <GNB isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+            {/* 오버레이를 최상위 레벨로 이동하여 GNB 위/LNB 아래(z-index:900)에 확실히 위치시킴 */}
+            {isMenuOpen && <div className="menu-overlay" onClick={() => setIsMenuOpen(false)} />}
+
             <div className="content-wrapper">
                 <LNB isMenuOpen={isMenuOpen} />
-                {/* 모바일에서 메뉴 열렸을 때 배경 흐리게 처리하는 오버레이 */}
-                {isMenuOpen && <div className="menu-overlay" onClick={() => setIsMenuOpen(false)} />}
                 <main className="main-layout">
                     <Routes>
                         <Route path="/" element={<Home />} />
