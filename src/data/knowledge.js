@@ -286,79 +286,6 @@ export const KNOWLEDGE_DATA = [
     ],
   },
   {
-    id: "vector-db",
-    enTitle: "Vector Database",
-    koTitle: "벡터 DB",
-    mainTheme: "지식·이해",
-    icon: "Database",
-    hoverText: "의미 저장소",
-    chipIcon: "Package",
-    description: "글의 뜻을 숫자로 바꾼 결과(임베딩)를 저장해두는 데이터베이스",
-    fullContent: `🔢 수만 개의 문서를 임베딩 데이터로 변환하여 보관\n\n📏 질문과 가장 가까운 의미를 가진 숫자 묶음을 고속 탐색\n\n📌 키워드가 완전히 일치하지 않아도 맥락상 유사한 문서를 반환\n\n⚡ 대규모 데이터를 실시간으로 AI가 참조하게 만드는 도구`,
-    bullets: [
-      "의미가 비슷한 정보를 찾아야 하는 service인지 판단",
-      "어떤 문서를 벡터 DB에 넣을지 정의",
-      "문서 변경 시 임베딩과 DB를 언제 갱신할지 결정",
-      "검색 결과를 항상 정답으로 쓰지 않을 안전장치 고려",
-      "데이터가 계속 쌓일 때 오래된 정보를 지울지, 아카이빙할지 데이터 수명 관리(Lifecycle) 정책 수립",
-    ],
-    faqs: [
-      {
-        question: "벡터 디비랑 메모리(Memory)는 정확히 어떤 차이가 있나요?",
-        answerBlocks: [
-          {
-            type: "text",
-            content:
-              '핵심부터 딱 잘라 말씀드리면, 벡터 DB는 "지식 저장소"이고, Memory는 "대화와 행동의 맥락을 기억하는 장치"입니다.',
-          },
-          {
-            type: "header",
-            content: "① 먼저 감각적으로 한 번에 구분해 볼까요?",
-          },
-          {
-            type: "desc",
-            content:
-              "사람으로 비유하면 아주 명확해집니다.\n• 벡터 DB = 책장, 문서함 (필요하면 자료를 찾아보는 자료실)\n• Memory = 머릿속 기억 (아까 무슨 얘기를 했는지 기억하는 것)\n\n즉, 벡터 DB는 ‘찾아보는 기억’이고, Memory는 ‘이어가는 기억’입니다.",
-          },
-          {
-            type: "header",
-            content: "② 왜 Memory라는 개념이 따로 필요할까요?",
-          },
-          {
-            type: "desc",
-            content:
-              'LLM은 기본적으로 방금 한 말도 다음 요청에서는 잊어버리는 특성이 있습니다.\n"아까 말한 조건으로 다시 정리해줘" 같은 요청을 이해하려면 이전 대화 맥락을 어딘가에 저장해야 하는데, 이게 바로 Memory의 역할입니다.',
-          },
-          { type: "header", content: "③ 벡터 DB vs Memory 한눈에 비교하기" },
-          {
-            type: "table",
-            content: {
-              headers: ["구분", "Memory", "벡터 DB"],
-              rows: [
-                ["목적", "대화·작업 맥락 유지", "지식 검색"],
-                ["저장 내용", "요약, 상태, 선호", "문서, 지식"],
-                ["사용 시점", "매 대화마다", "필요할 때"],
-                ["지속성", "짧거나 선택적", "길고 안정적"],
-                ["성격", "UX 중심", "정확도 중심"],
-              ],
-            },
-          },
-          { type: "header", content: "④ Agent에서 Memory가 특히 중요한 이유" },
-          {
-            type: "desc",
-            content:
-              "에이전트는 목표 달성을 위해 여러 번 행동을 반복합니다. 이때 Memory가 없으면 같은 행동을 반복하거나 목표를 잊어버리게 됩니다.\n\n결국 에이전트는 [판단 + 도구 실행 + Memory]가 합쳐진 구조라고 볼 수 있습니다.",
-          },
-          {
-            type: "summary",
-            content:
-              '임베딩을 쓴다고 다 벡터 DB인 것은 아닙니다.\n고급 Memory는 임베딩을 활용하기도 하지만, 본질적으로는 "맥락과 상태"를 동적으로 유지하기 위한 목적이라는 점이 다릅니다.',
-          },
-        ],
-      },
-    ],
-  },
-  {
     id: "context",
     enTitle: "Context",
     koTitle: "컨텍스트",
@@ -695,6 +622,7 @@ export const KNOWLEDGE_DATA = [
     id: "reranking",
     enTitle: "Reranking",
     koTitle: "리랭킹",
+    diagram: "RerankingDiagram",
     mainTheme: "지식·이해",
     icon: "ListOrdered",
     hoverText: "재정렬",
@@ -714,13 +642,14 @@ export const KNOWLEDGE_DATA = [
     id: "rag",
     enTitle: "RAG",
     koTitle: "검색 증강 생성",
+    diagram: "RAGDiagram",
     mainTheme: "지식·이해",
     icon: "Search",
     hoverText: "검색",
     chipIcon: "Info",
     description:
       "AI가 바로 대답하지 않고 먼저 자료를 찾아본 뒤 대답하게 만드는 방식",
-    fullContent: `📚 질문이 입력되면 관련 문서를 먼저 탐색\n\n🔍 찾은 문서를 참고하여 답변을 생성하는 프로세스\n\n🧠 AI가 내부 기억이 아닌 외부 근거를 바탕으로 답변\n\n❗ 틀린 말이나 환각 현상(Hallucination)을 획기적으로 방지`,
+    fullContent: `📚 질문이 입력되면 관련 문서를 먼저 탐색\n\n🔍 찾은 문서를 참고하여 답변을 생성하는 프로세스\n\n🧠 AI가 내부 기억이 아닌 외부 근거를 바탕으로 답변\n\n❗ 틀린 말이나 환각 현상(Hallucination)을 방지`,
     bullets: [
       "답변의 정확도가 중요한 서비스인지 판단",
       "내부 문서, 정책, 매뉴얼이 존재하는지 확인",
@@ -1478,6 +1407,7 @@ export const KNOWLEDGE_DATA = [
     id: "agent",
     enTitle: "Agent",
     koTitle: "에이전트",
+    diagram: "AgentDiagram",
     mainTheme: "처리·실행",
     icon: "Brain",
     hoverText: "자율 실행",
@@ -1491,6 +1421,55 @@ export const KNOWLEDGE_DATA = [
       "비용 폭증과 무한 반복을 막기 위한 중단 조건을 설계",
       "단순 Q&A가 아닌 복합 업무나 탐색형 문제 해결에 적용",
       "똑똑한 모델보다 '책임을 어디까지 맡길 것인가'를 결정하는 기획",
+    ],
+    faqs: [
+      {
+        question: "에이전트와 서브 에이전트는 무엇이 다른건가요?",
+        answerBlocks: [
+          { type: "header", content: "① 한 줄 요약" },
+          {
+            type: "desc",
+            content:
+              "에이전트는 전체 목표를 수행하는 주체이고, 서브 에이전트는 특정 역할만 수행하도록 분리된 하위 에이전트입니다.\n(👉 총괄 vs 전문 담당)",
+          },
+          { type: "header", content: "② 아주 쉬운 비유: 회사 조직" },
+          {
+            type: "desc",
+            content:
+              "• 에이전트: 프로젝트 총괄 매니저 (전체 흐름 관장)\n• 서브 에이전트: 특정 실무 담당 (리서치, 문서 작성, 검토 등)",
+          },
+          { type: "header", content: "③ 구조적 차이점" },
+          {
+            type: "table",
+            content: {
+              headers: ["구분", "에이전트 (Agent)", "서브 에이전트 (Sub-agent)"],
+              rows: [
+                ["역할 범위", "전체 목표", "특정 기능"],
+                ["판단 범위", "넓음", "제한적"],
+                ["통제 가능성", "낮음", "높음"],
+                ["복잡성", "높음", "낮음"],
+                ["확장성", "구조에 따라 다름", "모듈화 가능"],
+              ],
+            },
+          },
+          {
+            type: "desc",
+            content:
+              "• 에이전트 (전략 중심): 목표 설정, 다음 행동 결정, 도구 호출 판단, 서브 에이전트 호출\n• 서브 에이전트 (전술 중심): 특정 업무만 수행, 업무 범위 제한, 입출력 구조 고정 가능",
+          },
+          { type: "header", content: "④ 왜 서브 에이전트를 나누는가" },
+          {
+            type: "desc",
+            content:
+              "하나의 에이전트가 모든 일을 다 하면 프롬프트가 복잡해지고 추론이 불안정해집니다.\n역할을 나누면 다음과 같은 이점이 있습니다.\n\n• 책임 분리: 특정 역할에만 집중하여 성능 향상\n• 통제 용이: 실패 시 영향 범위 최소화 및 디버깅 수월\n• 확장성: 필요한 기능만 서브 에이전트로 추가/교체 가능",
+          },
+          {
+            type: "summary",
+            content:
+              "결국 '이 업무를 전체 에이전트가 판단하게 할 것인가, 아니면 특정 역할로 분리할 것인가'의 결정이 핵심입니다.\n복잡한 시스템일수록 서브 에이전트를 통한 책임 분리가 필수적입니다.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -1838,6 +1817,51 @@ export const KNOWLEDGE_DATA = [
       },
     ],
   },
+  {
+    id: "parsing",
+    enTitle: "Parsing",
+    koTitle: "파싱",
+    mainTheme: "처리·실행",
+    icon: "FileJson",
+    hoverText: "구조 해석",
+    chipIcon: "Binary",
+    description: "텍스트나 데이터를 읽어 의도, 엔티티, 필드 등 기계가 다룰 수 있는 구조화된 형태로 해석하고 분해하는 과정",
+    fullContent: `📄 자연어 → 구조 데이터
+🔍 분리 및 해석 (예: JSON)
+⚙️ 시스템 연결 전 필수 단계
+
+단순히 글자를 화면에 띄우는 것이 아니라,
+AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
+사용하기 위해 데이터를 체계적으로 분류, 정리하는 전처리 작업`,
+    bullets: [
+      "다음 동작을 수행할 시스템이 명확하게 이해할 수 있도록 출력 형식(스키마)을 정의하는 것이 핵심",
+      "필수 필드 누락 시 AI에게 재요청하거나 대체값을 넣는 처리 정책 필요",
+      "정해진 구조에 맞지 않는 형식 오류가 발생했을 때 작동할 재시도(Retry) 및 Fallback 구조 설계",
+      "Few-shot은 AI가 답변을 잘 쓰도록 패턴을 '유도'하는 것이고, 파싱은 결과가 맞게 나왔는지 '검증'하는 역할",
+      "구조 설계(파싱)가 없으면 시스템 자동화 및 다음 액션(Webhook, DB 저장 등)은 실패할 수밖에 없음"
+    ],
+    faqs: [
+      {
+        question: "파싱과 Output Parser의 차이는 무엇인가요?",
+        answerBlocks: [
+          {
+            type: "text",
+            content: "아주 밀접한 관계이지만 약간의 개념적 스케일 차이가 있습니다."
+          },
+          { type: "header", content: "① 파싱(Parsing)은 '과정'이자 역할의 이름" },
+          {
+            type: "desc",
+            content: "파싱은 어떤 언어나 데이터를 쪼개고 분석해서 구조화하는 '행위 자체'를 말합니다. IT 전반에서 쓰이는 가장 기초적이고 본질적인 용어입니다."
+          },
+          { type: "header", content: "② 아웃파서(Output Parser)는 특화된 '도구'" },
+          {
+            type: "desc",
+            content: "AI 랭체인 생태계 등에서 AI 모델의 대답(Output)을 우리가 미리 정해둔 형태(예: JSON, 리스트)로 강제로 파싱(Parsing)해주는 '특정 기능 블록'을 의미합니다.\n\n즉, 파싱이라는 목적을 달성하게 해주는 도구 중 하나가 Output Parser입니다."
+          }
+        ]
+      }
+    ]
+  },
 
   // 3. 연결·확장 (Expansion) - 기초 연결부터 표준까지
   {
@@ -2117,6 +2141,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "mcp",
+    diagram: "MCPDiagram",
     enTitle: "MCP",
     koTitle: "Model Context Protocol",
     mainTheme: "연결·확장",
@@ -2259,6 +2284,7 @@ export const KNOWLEDGE_DATA = [
     id: "elasticsearch",
     enTitle: "Elastic Search",
     koTitle: "엘라스틱 서치",
+    diagram: "ElasticDiagram",
     mainTheme: "연결·확장",
     icon: "SearchCode",
     hoverText: "검색허브",

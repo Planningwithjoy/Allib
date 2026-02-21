@@ -4,9 +4,19 @@ import * as Icons from 'lucide-react';
 import { KNOWLEDGE_DATA } from '../data/knowledge';
 import NodeEdgeFlowchart from '../components/NodeEdgeFlowchart';
 import './Detail.css';
+import MCPDiagram from '../components/MCPDiagram';
+import RAGDiagram from '../components/RAGDiagram';
+import AgentDiagram from '../components/AgentDiagram';
+import RerankingDiagram from '../components/RerankingDiagram';
+import ElasticDiagram from '../components/ElasticDiagram';
 
 const COMPONENT_REGISTRY = {
-    'NodeEdgeFlowchart': NodeEdgeFlowchart
+    'NodeEdgeFlowchart': NodeEdgeFlowchart,
+    'MCPDiagram': MCPDiagram,
+    'RAGDiagram': RAGDiagram,
+    'AgentDiagram': AgentDiagram,
+    'RerankingDiagram': RerankingDiagram,
+    'ElasticDiagram': ElasticDiagram
 };
 
 const CodeBlock = ({ content }) => {
@@ -106,6 +116,15 @@ const Detail = () => {
                         ))}
                     </ul>
                 </section>
+
+                {data.diagram && (
+                    <section className="detail-card diagram">
+                        <h3>구조도 및 데이터 흐름</h3>
+                        {COMPONENT_REGISTRY[data.diagram] ? (
+                            React.createElement(COMPONENT_REGISTRY[data.diagram])
+                        ) : null}
+                    </section>
+                )}
             </main>
 
             {data.faqs && data.faqs.length > 0 && (

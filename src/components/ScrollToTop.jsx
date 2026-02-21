@@ -13,9 +13,9 @@ const ScrollToTop = () => {
             if (document.documentElement) document.documentElement.scrollTop = 0;
             if (document.body) document.body.scrollTop = 0;
 
-            // 3. 잠재적인 레이아웃 컨테이너 스크롤 초기화
-            // .main-layout, .content-wrapper 등 주요 클래스 타겟팅
-            const scrollContainers = document.querySelectorAll('.main-layout, .content-wrapper, .lnb-content, .detail-container');
+            // 3. 잠재적인 레이아웃 컨테이너 스크롤 초기화 (LNB 제외하여 사이드바 위치 유지)
+            // .main-layout, .content-wrapper 등 주요 컨텐츠 타이틀 타겟팅
+            const scrollContainers = document.querySelectorAll('.main-layout, .content-wrapper, .detail-container');
             scrollContainers.forEach(container => {
                 container.scrollTop = 0;
             });
