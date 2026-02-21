@@ -169,6 +169,81 @@ const Map = () => {
         };
         canvas.addEventListener('wheel', onWheel, { passive: false });
 
+        // Touch (passive: false → e.preventDefault() 실제 작동)
+        const onTouchStart = (e) => {
+            if (e.touches.length === 1) {
+                const t = e.touches[0];
+                const rect = canvas.getBoundingClientRect();
+                const cx = t.clientX - rect.left, cy = t.clientY - rect.top;
+                const { wx, wy } = toWorld(cx, cy);
+                const hit = hitTest(wx, wy);
+                s.mouseDownPos = { x: cx, y: cy };
+                if (hit) {
+                    e.preventDefault(); // 노드 터치 시 즉시 스크롤 차단
+                    hit.pinned = true; hit.vx = 0; hit.vy = 0;
+                    s.nodeDrag = { node: hit, moved: false };
+                } else {
+                    s.panDrag = { startX: cx, startY: cy, originX: s.transform.x, originY: s.transform.y };
+                }
+            } else if (e.touches.length === 2) {
+                e.preventDefault();
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                touchRef.current.lastDist = Math.sqrt(dx * dx + dy * dy);
+                s.panDrag = null;
+            }
+        };
+        const onTouchMove = (e) => {
+            // 노드 드래그 또는 핀치/패닝 중엔 항상 스크롤 차단
+            if (s.nodeDrag || s.panDrag || e.touches.length === 2) e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            if (e.touches.length === 2) {
+                const dx = e.touches[0].clientX - e.touches[1].clientX;
+                const dy = e.touches[0].clientY - e.touches[1].clientY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (touchRef.current.lastDist) {
+                    const factor = dist / touchRef.current.lastDist;
+                    const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
+                    const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
+                    const ns = Math.min(5, Math.max(0.15, s.transform.scale * factor));
+                    s.transform.x = cx - (cx - s.transform.x) * (ns / s.transform.scale);
+                    s.transform.y = cy - (cy - s.transform.y) * (ns / s.transform.scale);
+                    s.transform.scale = ns;
+                }
+                touchRef.current.lastDist = dist;
+            } else if (e.touches.length === 1) {
+                const t = e.touches[0];
+                const cx = t.clientX - rect.left, cy = t.clientY - rect.top;
+                if (s.nodeDrag) {
+                    const { wx, wy } = toWorld(cx, cy);
+                    s.nodeDrag.node.x = wx; s.nodeDrag.node.y = wy;
+                    s.nodeDrag.node.vx = 0; s.nodeDrag.node.vy = 0;
+                    if (s.mouseDownPos) {
+                        const dx = cx - s.mouseDownPos.x, dy = cy - s.mouseDownPos.y;
+                        if (dx * dx + dy * dy > 16) s.nodeDrag.moved = true;
+                    }
+                } else if (s.panDrag) {
+                    s.transform.x = s.panDrag.originX + (cx - s.panDrag.startX);
+                    s.transform.y = s.panDrag.originY + (cy - s.panDrag.startY);
+                }
+            }
+        };
+        const onTouchEnd = (e) => {
+            if (e.touches.length === 0) {
+                if (s.nodeDrag) {
+                    const nd = s.nodeDrag.node;
+                    nd.pinned = false; nd.vx = 0; nd.vy = 0;
+                    if (!s.nodeDrag.moved) { s.selectedNode = nd; setSelectedNode({ ...nd }); }
+                    s.nodeDrag = null;
+                }
+                s.panDrag = null; s.mouseDownPos = null;
+                touchRef.current.lastDist = null;
+            }
+        };
+        canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+        canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+        canvas.addEventListener('touchend', onTouchEnd, { passive: true });
+
         // Render 루프
         const loop = () => {
             tickNeighbors();
@@ -180,6 +255,9 @@ const Map = () => {
         return () => {
             if (s.animFrame) cancelAnimationFrame(s.animFrame);
             canvas.removeEventListener('wheel', onWheel);
+            canvas.removeEventListener('touchstart', onTouchStart);
+            canvas.removeEventListener('touchmove', onTouchMove);
+            canvas.removeEventListener('touchend', onTouchEnd);
         };
     }, []);
 
@@ -460,76 +538,6 @@ const Map = () => {
 
     // ── Touch ─────────────────────────────────────────────────────
     const touchRef = useRef({});
-    const handleTouchStart = (e) => {
-        const s = stateRef.current;
-        if (e.touches.length === 1) {
-            const t = e.touches[0];
-            const rect = canvasRef.current.getBoundingClientRect();
-            const cx = t.clientX - rect.left, cy = t.clientY - rect.top;
-            const { wx, wy } = toWorld(cx, cy);
-            const hit = hitTest(wx, wy);
-            s.mouseDownPos = { x: cx, y: cy };
-            if (hit) {
-                hit.pinned = true; hit.vx = 0; hit.vy = 0;
-                s.nodeDrag = { node: hit, moved: false };
-            } else {
-                s.panDrag = { startX: cx, startY: cy, originX: s.transform.x, originY: s.transform.y };
-            }
-        } else if (e.touches.length === 2) {
-            const dx = e.touches[0].clientX - e.touches[1].clientX;
-            const dy = e.touches[0].clientY - e.touches[1].clientY;
-            touchRef.current.lastDist = Math.sqrt(dx * dx + dy * dy);
-            s.panDrag = null;
-        }
-    };
-    const handleTouchMove = (e) => {
-        e.preventDefault();
-        const s = stateRef.current;
-        const rect = canvasRef.current.getBoundingClientRect();
-        if (e.touches.length === 2) {
-            const dx = e.touches[0].clientX - e.touches[1].clientX;
-            const dy = e.touches[0].clientY - e.touches[1].clientY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (touchRef.current.lastDist) {
-                const factor = dist / touchRef.current.lastDist;
-                const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2 - rect.left;
-                const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2 - rect.top;
-                const ns = Math.min(5, Math.max(0.15, s.transform.scale * factor));
-                s.transform.x = cx - (cx - s.transform.x) * (ns / s.transform.scale);
-                s.transform.y = cy - (cy - s.transform.y) * (ns / s.transform.scale);
-                s.transform.scale = ns;
-            }
-            touchRef.current.lastDist = dist;
-        } else if (e.touches.length === 1) {
-            const t = e.touches[0];
-            const cx = t.clientX - rect.left, cy = t.clientY - rect.top;
-            if (s.nodeDrag) {
-                const { wx, wy } = toWorld(cx, cy);
-                s.nodeDrag.node.x = wx; s.nodeDrag.node.y = wy;
-                s.nodeDrag.node.vx = 0; s.nodeDrag.node.vy = 0;
-                if (s.mouseDownPos) {
-                    const dx = cx - s.mouseDownPos.x, dy = cy - s.mouseDownPos.y;
-                    if (dx * dx + dy * dy > 16) s.nodeDrag.moved = true;
-                }
-            } else if (s.panDrag) {
-                s.transform.x = s.panDrag.originX + (cx - s.panDrag.startX);
-                s.transform.y = s.panDrag.originY + (cy - s.panDrag.startY);
-            }
-        }
-    };
-    const handleTouchEnd = (e) => {
-        const s = stateRef.current;
-        if (e.touches.length === 0) {
-            if (s.nodeDrag) {
-                const nd = s.nodeDrag.node;
-                nd.pinned = false; nd.vx = 0; nd.vy = 0;
-                if (!s.nodeDrag.moved) { s.selectedNode = nd; setSelectedNode({ ...nd }); }
-                s.nodeDrag = null;
-            }
-            s.panDrag = null; s.mouseDownPos = null;
-            touchRef.current.lastDist = null;
-        }
-    };
 
     // ── Zoom / Reset ──────────────────────────────────────────────
     const zoom = (factor) => {
@@ -596,9 +604,6 @@ const Map = () => {
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseLeave}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
                 />
 
                 <div className="map-zoom-controls">

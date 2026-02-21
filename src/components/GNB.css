@@ -496,3 +496,16 @@
     font-size: 0.95rem;
     opacity: 0.5;
 }
+
+/* 터치 기기(모바일)에서 퀴즈·맵 버튼 호버 효과 및 툴팁 비활성화 */
+@media (hover: none) {
+    .gnb-quiz-btn:hover {
+        border-color: var(--border);
+        color: var(--text-dim);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .gnb-tooltip {
+        display: none;
+    }
+}
