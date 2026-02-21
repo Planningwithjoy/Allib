@@ -7,7 +7,7 @@
     margin: 24px 0;
     position: relative;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 .el-layout-grid {
@@ -132,4 +132,16 @@
 
 .el-box.highlight .box-text {
     color: var(--primary);
+}
+
+/* 모바일: 가로 스크롤로 PC 레이아웃 보존 */
+@media (max-width: 768px) {
+    .el-diagram-wrapper {
+        padding: 30px 0;
+    }
+
+    .el-layout-grid {
+        min-width: 680px;
+        margin: 0;
+    }
 }
