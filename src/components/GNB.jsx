@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { CATEGORIES, KNOWLEDGE_DATA } from '../data/knowledge';
 import './GNB.css';
-import { Sparkles, ChevronRight, Search, X, Clock, Menu, Trophy } from 'lucide-react';
+import { Sparkles, ChevronRight, Search, X, Clock, Menu, Trophy, Map } from 'lucide-react';
 
 const GNB = ({ isMenuOpen, setIsMenuOpen }) => {
     const [activeCategory, setActiveCategory] = useState(null);
@@ -179,13 +179,24 @@ const GNB = ({ isMenuOpen, setIsMenuOpen }) => {
                     </div>
 
                     <div className="gnb-quiz-btn-container">
-                        <button
-                            className="gnb-quiz-btn"
-                            onClick={() => navigate('/quiz')}
-                            title="AI Quiz"
-                        >
-                            <Trophy size={20} strokeWidth={1.5} />
-                        </button>
+                        <div className="gnb-tooltip-wrap">
+                            <button
+                                className="gnb-quiz-btn"
+                                onClick={() => navigate('/quiz')}
+                            >
+                                <Trophy size={20} strokeWidth={1.5} />
+                            </button>
+                            <span className="gnb-tooltip">AI 퀴즈</span>
+                        </div>
+                        <div className="gnb-tooltip-wrap">
+                            <button
+                                className="gnb-quiz-btn"
+                                onClick={() => navigate('/map')}
+                            >
+                                <Map size={20} strokeWidth={1.5} />
+                            </button>
+                            <span className="gnb-tooltip">지식 그래프</span>
+                        </div>
                     </div>
                 </div>
             </div>

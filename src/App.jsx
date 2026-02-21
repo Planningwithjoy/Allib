@@ -9,6 +9,7 @@ import Quiz from './pages/Quiz';
 import OXQuiz from './pages/OXQuiz';
 import ShortQuiz from './pages/ShortQuiz';
 import RandomQuiz from './pages/RandomQuiz';
+import Map from './pages/Map';
 import './index.css';
 
 const AppContent = () => {
@@ -36,6 +37,7 @@ const AppContent = () => {
                         <Route path="/quiz/short" element={<ShortQuiz />} />
                         <Route path="/quiz/ox" element={<OXQuiz />} />
                         <Route path="/quiz/random" element={<RandomQuiz />} />
+                        <Route path="/map" element={<Map />} />
                     </Routes>
                 </main>
             </div>

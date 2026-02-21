@@ -50,9 +50,10 @@ const Detail = () => {
     const data = KNOWLEDGE_DATA.find(item => item.id === id);
     const [openFaq, setOpenFaq] = useState(null); // 기본적으로 닫힌 상태 유지
 
-    // 페이지 이동 시 FAQ 상태 초기화
+    // 페이지 이동 시 FAQ 상태 초기화 및 스크롤 최상단 이동
     React.useEffect(() => {
         setOpenFaq(null);
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, [id]);
 
     const toggleFaq = (index) => {
@@ -181,6 +182,27 @@ const Detail = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </section>
+            )}
+
+            {data.relatedKeywords && data.relatedKeywords.length > 0 && (
+                <section className="detail-related-section">
+                    <h3 className="related-title">연관 키워드</h3>
+                    <div className="related-chips-container">
+                        {data.relatedKeywords.map((relatedId, idx) => {
+                            const relatedItem = KNOWLEDGE_DATA.find(k => k.id === relatedId);
+                            if (!relatedItem) return null;
+                            const ChipIcon = Icons[relatedItem.icon] || Icons.Hash;
+                            return (
+                                <Link to={`/detail/${relatedItem.id}`} key={idx} className="related-chip-link">
+                                    <div className="related-chip">
+                                        <ChipIcon size={14} className="related-chip-icon" />
+                                        <span className="related-chip-text">{relatedItem.enTitle}</span>
+                                    </div>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </section>
             )}

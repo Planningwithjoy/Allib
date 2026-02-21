@@ -217,13 +217,13 @@
 /* FAQ Section */
 .detail-faq-section {
     margin-top: 48px;
-    /* 80px -> 48px로 축소하여 응집력 강화 */
-    margin-bottom: 120px;
+    margin-bottom: 0px;
+    /* 기존 120px을 연관 키워드 하단으로 이동 */
     animation: fadeIn 0.6s ease-out;
 }
 
 .faq-main-title {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-weight: 700;
     margin-bottom: 32px;
     color: var(--text);
@@ -544,4 +544,101 @@
     color: #374151;
     white-space: pre-wrap;
     font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+/* Related Keywords Section */
+.detail-related-section {
+    position: relative;
+    margin-top: 48px;
+    /* FAQ와 본문 간격과 동일하게 맞춤 */
+    margin-bottom: 120px;
+    /* 페이지 하단 여백 확보 */
+}
+
+.related-title {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.related-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.related-chip-link {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.related-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 100px;
+    /* 완벽한 알약 형태 */
+    color: #4B5563;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Apple-like 부드러운 전환 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.related-chip-icon {
+    color: var(--primary);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.related-chip-text {
+    letter-spacing: -0.01em;
+}
+
+/* Premium Hover Physics */
+.related-chip:hover {
+    border-color: var(--primary);
+    background-color: #FFFFFF;
+    color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.related-chip:hover .related-chip-icon {
+    transform: scale(1.15) rotate(8deg);
+    /* 생동감 있는 마이크로 인터랙션 */
+}
+
+/* Active State */
+.related-chip:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .detail-related-section {
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
+    .related-title {
+        font-size: 1.05rem;
+        margin-bottom: 20px;
+    }
+
+    .related-chip {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        gap: 6px;
+    }
+
+    .related-chips-container {
+        gap: 10px;
+    }
 }

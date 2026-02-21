@@ -25,6 +25,7 @@ export const KNOWLEDGE_DATA = [
   // 1. 지식·이해 (Knowledge) - 기초부터 심화까지
   {
     id: "parameter",
+    relatedKeywords: ["fine-tuning", "rag", "overfitting"],
     enTitle: "Parameter",
     koTitle: "파라미터(매개변수)",
     mainTheme: "지식·이해",
@@ -36,7 +37,7 @@ export const KNOWLEDGE_DATA = [
     bullets: [
       "파라미터는 서비스 운영 중에 쉽게 바뀌지 않음",
       "“AI가 학습한다”는 표현은 대부분 파라미터 변경이 아님",
-      "최신 정보, 내부 규칙은 파라미터가 아니라 RAG로 보완해야 함",
+      "최신 정보, 내부 규칙은 파라미터가 아닌 RAG로 보완",
       "모델 선택 시 파라미터 크기는 성능, 비용, 응답 속도에 직접 영향",
       "파라미터가 큰 모델이 무조건 정답은 아니며, 우리 서비스에 딱 맞는 '최적의 크기'를 찾는 테스트 과정 필수",
     ],
@@ -178,6 +179,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "embedding",
+    relatedKeywords: ["chunk", "elasticsearch", "rag"],
     enTitle: "Embedding",
     koTitle: "임베딩",
     mainTheme: "지식·이해",
@@ -195,6 +197,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "chunk",
+    relatedKeywords: ["snippet", "embedding", "rag"],
     enTitle: "Chunk",
     koTitle: "청크",
     mainTheme: "지식·이해",
@@ -287,6 +290,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "context",
+    relatedKeywords: ["state", "rag", "token"],
     enTitle: "Context",
     koTitle: "컨텍스트",
     mainTheme: "지식·이해",
@@ -363,6 +367,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "multimodal",
+    relatedKeywords: ["agent", "rag"],
     enTitle: "Multimodal",
     koTitle: "멀티모달",
     mainTheme: "지식·이해",
@@ -382,6 +387,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "code-indexing",
+    relatedKeywords: ["rag", "embedding", "snippet"],
     enTitle: "Codebase Indexing",
     koTitle: "코드 색인",
     mainTheme: "지식·이해",
@@ -441,6 +447,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "snippet",
+    relatedKeywords: ["chunk", "rag", "retriever"],
     enTitle: "Snippet",
     koTitle: "스니펫",
     mainTheme: "지식·이해",
@@ -566,6 +573,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "retriever",
+    relatedKeywords: ["rag", "elasticsearch", "reranking"],
     enTitle: "Retriever",
     koTitle: "리트리버",
     mainTheme: "지식·이해",
@@ -620,6 +628,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "reranking",
+    relatedKeywords: ["retriever", "rag", "elasticsearch"],
     enTitle: "Reranking",
     koTitle: "리랭킹",
     diagram: "RerankingDiagram",
@@ -640,6 +649,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "rag",
+    relatedKeywords: ["retriever", "embedding", "elasticsearch"],
     enTitle: "RAG",
     koTitle: "검색 증강 생성",
     diagram: "RAGDiagram",
@@ -701,6 +711,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "fine-tuning",
+    relatedKeywords: ["parameter", "few-shot", "overfitting"],
     enTitle: "Fine-tuning",
     koTitle: "파인튜닝",
     mainTheme: "지식·이해",
@@ -720,6 +731,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "overfitting",
+    relatedKeywords: ["parameter", "fine-tuning"],
     enTitle: "Overfitting",
     koTitle: "과적합",
     mainTheme: "지식·이해",
@@ -739,6 +751,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "ontology",
+    relatedKeywords: ["semantic-layer", "rag", "graphrag"],
     enTitle: "Ontology",
     koTitle: "온톨로지",
     mainTheme: "지식·이해",
@@ -758,6 +771,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "semantic-layer",
+    relatedKeywords: ["ontology", "rag"],
     enTitle: "Semantic Layer",
     koTitle: "시멘틱 레이어",
     mainTheme: "지식·이해",
@@ -835,6 +849,7 @@ export const KNOWLEDGE_DATA = [
 
   {
     id: "vertical-ai",
+    relatedKeywords: ["ontology", "fine-tuning", "rag"],
     enTitle: "Vertical AI",
     koTitle: "버티컬 AI",
     mainTheme: "지식·이해",
@@ -855,6 +870,7 @@ export const KNOWLEDGE_DATA = [
   // 2. 처리·실행 (Execution) - 단순 구조에서 복잡한 구조로
   {
     id: "router",
+    relatedKeywords: ["orchestrator", "agent", "conditional-edge"],
     enTitle: "Router",
     koTitle: "라우터",
     mainTheme: "처리·실행",
@@ -874,6 +890,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "output-parser",
+    relatedKeywords: ["parsing", "few-shot", "langchain"],
     enTitle: "Output Parser",
     koTitle: "아웃파서",
     mainTheme: "처리·실행",
@@ -893,6 +910,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "langchain",
+    relatedKeywords: ["langgraph", "rag", "agent"],
     enTitle: "LangChain",
     koTitle: "랭체인",
     mainTheme: "처리·실행",
@@ -950,6 +968,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "state",
+    relatedKeywords: ["node-edge", "conditional-edge", "context"],
     enTitle: "State",
     koTitle: "상태",
     mainTheme: "처리·실행",
@@ -1032,6 +1051,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "node-edge",
+    relatedKeywords: ["state", "conditional-edge", "langgraph"],
     enTitle: "Node / Edge",
     koTitle: "노드 / 엣지",
     mainTheme: "처리·실행",
@@ -1146,6 +1166,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "conditional-edge",
+    relatedKeywords: ["node-edge", "state", "loop"],
     enTitle: "Conditional Edge",
     koTitle: "조건 분기",
     mainTheme: "처리·실행",
@@ -1207,6 +1228,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "loop",
+    relatedKeywords: ["conditional-edge", "agent", "state"],
     enTitle: "Loop",
     koTitle: "루프",
     mainTheme: "처리·실행",
@@ -1304,6 +1326,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "langgraph",
+    relatedKeywords: ["langchain", "node-edge", "state"],
     enTitle: "LangGraph",
     koTitle: "랭그래프",
     mainTheme: "처리·실행",
@@ -1405,6 +1428,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "agent",
+    relatedKeywords: ["orchestrator", "skills", "langgraph"],
     enTitle: "Agent",
     koTitle: "에이전트",
     diagram: "AgentDiagram",
@@ -1474,6 +1498,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "cot",
+    relatedKeywords: ["agent", "few-shot", "token"],
     enTitle: "CoT",
     koTitle: "Chain of Thought",
     mainTheme: "처리·실행",
@@ -1536,6 +1561,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "graphrag",
+    relatedKeywords: ["rag", "ontology", "node-edge"],
     enTitle: "GraphRAG",
     koTitle: "그래프 RAG",
     mainTheme: "처리·실행",
@@ -1611,6 +1637,7 @@ export const KNOWLEDGE_DATA = [
 
   {
     id: "skills",
+    relatedKeywords: ["agent", "orchestrator", "few-shot"],
     enTitle: "Skills",
     koTitle: "스킬",
     mainTheme: "처리·실행",
@@ -1686,6 +1713,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "few-shot",
+    relatedKeywords: ["skills", "output-parser", "fine-tuning"],
     enTitle: "Few-shot",
     koTitle: "퓨샷",
     mainTheme: "처리·실행",
@@ -1753,6 +1781,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "orchestrator",
+    relatedKeywords: ["agent", "router", "langgraph"],
     enTitle: "Orchestrator",
     koTitle: "오케스트레이터",
     mainTheme: "처리·실행",
@@ -1819,6 +1848,7 @@ export const KNOWLEDGE_DATA = [
   },
   {
     id: "parsing",
+    relatedKeywords: ["output-parser", "few-shot", "embedding"],
     enTitle: "Parsing",
     koTitle: "파싱",
     mainTheme: "처리·실행",
@@ -1866,6 +1896,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   // 3. 연결·확장 (Expansion) - 기초 연결부터 표준까지
   {
     id: "api",
+    relatedKeywords: ["tool-calling", "mcp", "webhook"],
     enTitle: "API",
     koTitle: "Application Programming Interface",
     mainTheme: "연결·확장",
@@ -1931,6 +1962,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "tool-calling",
+    relatedKeywords: ["api", "mcp", "agent"],
     enTitle: "Tool Calling",
     koTitle: "도구 실행",
     mainTheme: "연결·확장",
@@ -2030,6 +2062,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "webhook",
+    relatedKeywords: ["api", "tool-calling", "parsing"],
     enTitle: "Webhook",
     koTitle: "웹훅",
     mainTheme: "연결·확장",
@@ -2141,6 +2174,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "mcp",
+    relatedKeywords: ["tool-calling", "api", "agent"],
     diagram: "MCPDiagram",
     enTitle: "MCP",
     koTitle: "Model Context Protocol",
@@ -2210,6 +2244,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "caching",
+    relatedKeywords: ["elasticsearch", "context", "embedding"],
     enTitle: "Caching",
     koTitle: "캐싱",
     mainTheme: "연결·확장",
@@ -2282,6 +2317,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "elasticsearch",
+    relatedKeywords: ["retriever", "rag", "caching"],
     enTitle: "Elastic Search",
     koTitle: "엘라스틱 서치",
     diagram: "ElasticDiagram",
@@ -2458,6 +2494,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   // 4. UX·운영 (UX/Ops) - 기초 단위부터 체감까지
   {
     id: "shadow-ai",
+    relatedKeywords: ["ai-guardrail", "jailbreak", "skills"],
     enTitle: "Shadow AI",
     koTitle: "섀도우 AI",
     mainTheme: "UX·운영",
@@ -2517,6 +2554,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "jailbreak",
+    relatedKeywords: ["prompt-injection", "ai-guardrail", "ai-red-teaming"],
     enTitle: "Jailbreak",
     koTitle: "탈옥",
     mainTheme: "UX·운영",
@@ -2627,6 +2665,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "prompt-injection",
+    relatedKeywords: ["jailbreak", "ai-guardrail", "rag"],
     enTitle: "Prompt Injection",
     koTitle: "프롬프트 인젝션",
     mainTheme: "UX·운영",
@@ -2736,6 +2775,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "ai-guardrail",
+    relatedKeywords: ["jailbreak", "prompt-injection", "ai-red-teaming"],
     enTitle: "AI Guardrail",
     koTitle: "AI 가드레일",
     mainTheme: "UX·운영",
@@ -2810,6 +2850,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "ai-red-teaming",
+    relatedKeywords: ["ai-guardrail", "jailbreak", "prompt-injection"],
     enTitle: "AI Red Teaming",
     koTitle: "AI 레드티밍",
     mainTheme: "UX·운영",
@@ -2828,6 +2869,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "ai-literacy",
+    relatedKeywords: ["ai-guardrail", "fallback", "walkthrough"],
     enTitle: "AI Literacy",
     koTitle: "AI 리터러시",
     mainTheme: "UX·운영",
@@ -2894,6 +2936,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "token",
+    relatedKeywords: ["chunk", "context", "streaming"],
     enTitle: "Token",
     koTitle: "토큰",
     mainTheme: "UX·운영",
@@ -2957,6 +3000,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "streaming",
+    relatedKeywords: ["sse", "websocket", "fallback"],
     enTitle: "Streaming",
     koTitle: "스트리밍",
     mainTheme: "UX·운영",
@@ -3075,6 +3119,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "fallback",
+    relatedKeywords: ["streaming", "router", "ai-guardrail"],
     enTitle: "Fallback",
     koTitle: "폴백",
     mainTheme: "UX·운영",
@@ -3094,6 +3139,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "walkthrough",
+    relatedKeywords: ["cot", "agent", "ai-literacy"],
     enTitle: "Walkthrough",
     koTitle: "워크쓰루",
     mainTheme: "UX·운영",
@@ -3113,6 +3159,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "sse",
+    relatedKeywords: ["streaming", "websocket", "token"],
     enTitle: "SSE",
     koTitle: "Server-Sent-Events",
     mainTheme: "UX·운영",
@@ -3175,6 +3222,7 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
   },
   {
     id: "websocket",
+    relatedKeywords: ["sse", "streaming", "api"],
     enTitle: "WebSocket",
     koTitle: "웹소켓",
     mainTheme: "UX·운영",
