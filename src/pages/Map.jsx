@@ -565,7 +565,7 @@ const Map = () => {
     const closePanel = () => { stateRef.current.selectedNode = null; setSelectedNode(null); };
 
     const connectedNodes = selectedNode
-        ? (KNOWLEDGE_DATA.find((d) => d.id === selectedNode.id)?.relatedKeywords || [])
+        ? Array.from(stateRef.current.adjacency?.[selectedNode.id] || [])
         : [];
 
     return (
@@ -644,7 +644,7 @@ const Map = () => {
 
                     {connectedNodes.length > 0 && (
                         <div className="map-panel-related">
-                            <div className="map-panel-section-title">연관 키워드</div>
+                            <div className="map-panel-section-title">연결된 키워드</div>
                             <div className="map-panel-chips">
                                 {connectedNodes.map((rid) => {
                                     const rn = stateRef.current.nodeMap[rid];
