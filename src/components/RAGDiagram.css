@@ -157,16 +157,9 @@
     position: relative;
 }
 
-.rag-arrow-line::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: -2px;
-    width: 6px;
-    height: 6px;
-    border-right: 2px solid var(--border);
-    border-bottom: 2px solid var(--border);
-    transform: rotate(-45deg);
+.rag-arrow-line.active {
+    background: linear-gradient(90deg, var(--border) 0%, var(--primary) 50%, var(--border) 100%);
+    background-size: 200% 100%;
 }
 
 /* Vertical Flow (Steps 2 & 3: Retriever <-> KB) */
@@ -201,28 +194,117 @@
     position: relative;
 }
 
-.rag-vertical-arrow.down .arrow-line::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: -2px;
-    width: 6px;
-    height: 6px;
-    border-right: 2px solid var(--border);
-    border-bottom: 2px solid var(--border);
-    transform: rotate(45deg);
+.arrow-line.active {
+    background: linear-gradient(180deg, var(--border) 0%, var(--primary) 50%, var(--border) 100%);
+    background-size: 100% 200%;
 }
 
-.rag-vertical-arrow.up .arrow-line::after {
-    content: '';
+.rag-vertical-arrow.up .arrow-line.active {
+    background: linear-gradient(0deg, var(--border) 0%, var(--primary) 50%, var(--border) 100%);
+}
+
+/* -------------------------------------
+ * Animated Particles
+ * ------------------------------------- */
+
+.rag-particle {
     position: absolute;
-    top: 0;
-    left: -2px;
+    background: var(--primary);
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.rag-particle.horizontal {
     width: 6px;
     height: 6px;
-    border-right: 2px solid var(--border);
-    border-bottom: 2px solid var(--border);
-    transform: rotate(-135deg);
+    top: -2px;
+    left: 0;
+    animation: flowMoveH 2s infinite linear;
+}
+
+.rag-particle.vertical-down {
+    width: 6px;
+    height: 6px;
+    left: -2px;
+    top: 0;
+    animation: flowMoveVDown 2s infinite linear;
+}
+
+.rag-particle.vertical-up {
+    width: 6px;
+    height: 6px;
+    left: -2px;
+    bottom: 0;
+    animation: flowMoveVUp 2s infinite linear;
+}
+
+.rag-particle.delay-1 {
+    animation-delay: 1s;
+}
+
+.rag-particle.delay-2 {
+    animation-delay: 2s;
+}
+
+@keyframes flowMoveH {
+    0% {
+        left: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes flowMoveVDown {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes flowMoveVUp {
+    0% {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 100%;
+        opacity: 0;
+    }
 }
 
 .arrow-text {

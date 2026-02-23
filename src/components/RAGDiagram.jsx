@@ -20,7 +20,9 @@ const RAGDiagram = () => {
                         <span className="rag-step-badge">1</span>
                         User Query
                     </div>
-                    <div className="rag-arrow-line"></div>
+                    <div className="rag-arrow-line active">
+                        <div className="rag-particle horizontal"></div>
+                    </div>
                 </div>
 
                 {/* Center: Retriever + KB */}
@@ -36,12 +38,16 @@ const RAGDiagram = () => {
                     <div className="rag-vertical-flow">
                         <div className="rag-vertical-arrow down">
                             <span className="rag-step-badge">2</span>
-                            <div className="arrow-line"></div>
+                            <div className="arrow-line active">
+                                <div className="rag-particle vertical-down"></div>
+                            </div>
                             <span className="arrow-text">Retriever fetches info</span>
                         </div>
                         <div className="rag-vertical-arrow up">
                             <span className="rag-step-badge">3</span>
-                            <div className="arrow-line"></div>
+                            <div className="arrow-line active">
+                                <div className="rag-particle vertical-up delay-1"></div>
+                            </div>
                             <span className="arrow-text">Return documents</span>
                         </div>
                     </div>
@@ -66,7 +72,9 @@ const RAGDiagram = () => {
                         <span className="rag-step-badge">4</span>
                         Query + Docs
                     </div>
-                    <div className="rag-arrow-line"></div>
+                    <div className="rag-arrow-line active">
+                        <div className="rag-particle horizontal delay-2"></div>
+                    </div>
                 </div>
 
                 {/* Right: LLM */}

@@ -363,6 +363,46 @@ export const KNOWLEDGE_DATA = [
           },
         ],
       },
+      {
+        question: "Context Window는 무엇인가요?",
+        answerBlocks: [
+          { type: "header", content: "① Context Window의 정의" },
+          {
+            type: "desc",
+            content:
+              "모델이 한 번에 읽고 참고할 수 있는 최대 토큰 길이입니다.\n\n무한 기억 ❌\n제한된 작업 공간 ⭕",
+          },
+          { type: "header", content: "② 아주 쉬운 비유: 책상 비유" },
+          {
+            type: "desc",
+            content:
+              "모델은 큰 도서관이 아니라, '책상 위에 펼쳐놓은 자료만 보고 일하는 사람'과 같습니다.\n책상이 바로 Context Window이며,\n\n• 너무 많이 올리면 넘침\n• 오래된 자료는 치워짐",
+          },
+          { type: "header", content: "③ 구조적으로 이해해보자" },
+          {
+            type: "desc",
+            content:
+              "모델에 들어가는 건 전부 토큰입니다.\n• 시스템 프롬프트\n• 사용자 질문\n• 대화 기록\n• RAG 문서\n• Tool 결과\n\n이 모든 것이 합쳐져 Context Window를 채웁니다. (예: 128k 토큰)\n이 안에 전부 들어가야만 모델이 이해할 수 있습니다.",
+          },
+          { type: "header", content: "④ 왜 중요한가?" },
+          {
+            type: "desc",
+            content:
+              "1) 대화가 길어지면 앞을 잊는다 (맥락 붕괴)\n→ 윈도우 창을 넘으면 앞부분이 잘려나갑니다.\n\n2) RAG 문서 많이 넣으면 비용 폭증\n→ 문서를 많이 넣을수록 토큰이 늘어나 비용이 증가하고 속도는 감소합니다.\n\n3) Agent 구조에서 특히 중요\n→ Tool 결과, 중간 추론, 로그까지 전부 넘기면 윈도우를 초과하기 쉽습니다.",
+          },
+          { type: "header", content: "⑤ Context Window vs Memory 차이" },
+          {
+            type: "desc",
+            content:
+              "많이 헷갈리는 부분입니다.\n\n• Context Window: \"지금 이 순간\" 모델이 보는 통찰력 범위\n• Memory: 언제든 열어볼 수 있는 \"대화 외부 저장소\"\n\nMemory는 그 자체로 쓰이는 게 아니라, 필요할 때 꺼내서 'Context Window' 안에 넣어야만 비로소 의미가 존재합니다.",
+          },
+          {
+            type: "summary",
+            content:
+              "\"이 정보가 지금 이 순간 모델의 판단에 반드시 필요한가?\"\n\n• 필요하다 → Context Window에 상주 (책상 위)\n• 나중에 필요할 수도 있다 → Memory에 보관 (도서관)",
+          },
+        ],
+      },
     ],
   },
   {
@@ -669,7 +709,7 @@ export const KNOWLEDGE_DATA = [
     ],
     faqs: [
       {
-        question: "GPT·Gemini는 RAG 없이도 왜 괜찮아요?",
+        question: "GPT나 Gemini는 RAG 없이도 대답을 잘 하던데 왜 그런가요?",
         answerBlocks: [
           {
             type: "text",
