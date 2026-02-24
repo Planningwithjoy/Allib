@@ -128,14 +128,14 @@
     margin-left: 260px;
     margin-top: 64px;
     min-height: calc(100vh - 64px);
-    padding: 40px 40px;
+    padding: 40px 52px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (max-width: 1199px) {
     .main-layout {
         margin-left: 0 !important;
-        padding: 40px 80px;
+        padding: 40px 100px;
         /* GNB 검색바 시작점과 본문 타이틀 정렬 */
     }
 }
