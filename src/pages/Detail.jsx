@@ -47,8 +47,13 @@ const CodeBlock = ({ content }) => {
 
 const Detail = () => {
     const { id } = useParams();
-    const data = KNOWLEDGE_DATA.find(item => item.id === id);
+    const currentIndex = KNOWLEDGE_DATA.findIndex(item => item.id === id);
+    const data = KNOWLEDGE_DATA[currentIndex];
     const [openFaq, setOpenFaq] = useState(null); // 기본적으로 닫힌 상태 유지
+
+    // 이전/다음 키워드
+    const prevItem = currentIndex > 0 ? KNOWLEDGE_DATA[currentIndex - 1] : null;
+    const nextItem = currentIndex < KNOWLEDGE_DATA.length - 1 ? KNOWLEDGE_DATA[currentIndex + 1] : null;
 
     // 페이지 이동 시 FAQ 상태 초기화 및 스크롤 최상단 이동
     React.useEffect(() => {
@@ -66,31 +71,40 @@ const Detail = () => {
 
     return (
         <div className="detail-container">
-            <Link to="/" className="back-link">
-                <Icons.ChevronLeft size={20} />
-                <span>Back to Library</span>
-            </Link>
-
             <header className="detail-hero">
                 <div className="detail-title-group">
                     <div className="detail-head-top">
-                        <div className="detail-icon-box">
-                            <Icon size={24} />
-                        </div>
-                        <div className="detail-meta-group">
-                            <div className="detail-meta-top">
-                                <span className="detail-category">{data.mainTheme}</span>
-                            </div>
-                            <div className="detail-chip-container">
-                                <div className="detail-chip">
-                                    <span className="chip-text">{data.hoverText}</span>
-                                </div>
-                            </div>
-                        </div>
+                        <Link to="/" className="back-link">
+                            <Icons.ChevronLeft size={22} />
+                        </Link>
+                        <span className="detail-category">{data.mainTheme}</span>
                     </div>
                     <div className="detail-title-row">
                         <h1 className="detail-title">{data.enTitle}</h1>
                         <span className="detail-subtitle">{data.koTitle}</span>
+                    </div>
+                    <div className="detail-title-row-meta">
+                        <div className="detail-icon-pill">
+                            <Icon size={15} />
+                            <span className="detail-hover-badge">{data.hoverText}</span>
+                        </div>
+                        {data.relatedKeywords && data.relatedKeywords.length > 0 && (
+                            <div className="header-related-chips">
+                                {data.relatedKeywords.map((relatedId, idx) => {
+                                    const relatedItem = KNOWLEDGE_DATA.find(k => k.id === relatedId);
+                                    if (!relatedItem) return null;
+                                    const ChipIcon = Icons[relatedItem.icon] || Icons.Hash;
+                                    return (
+                                        <Link to={`/detail/${relatedItem.id}`} key={idx} className="related-chip-link">
+                                            <div className="related-chip">
+                                                <ChipIcon size={14} className="related-chip-icon" />
+                                                <span className="related-chip-text">{relatedItem.enTitle}</span>
+                                            </div>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
                 </div>
             </header>
@@ -186,26 +200,34 @@ const Detail = () => {
                 </section>
             )}
 
-            {data.relatedKeywords && data.relatedKeywords.length > 0 && (
-                <section className="detail-related-section">
-                    <h3 className="related-title">연관 키워드</h3>
-                    <div className="related-chips-container">
-                        {data.relatedKeywords.map((relatedId, idx) => {
-                            const relatedItem = KNOWLEDGE_DATA.find(k => k.id === relatedId);
-                            if (!relatedItem) return null;
-                            const ChipIcon = Icons[relatedItem.icon] || Icons.Hash;
-                            return (
-                                <Link to={`/detail/${relatedItem.id}`} key={idx} className="related-chip-link">
-                                    <div className="related-chip">
-                                        <ChipIcon size={14} className="related-chip-icon" />
-                                        <span className="related-chip-text">{relatedItem.enTitle}</span>
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </div>
-                </section>
-            )}
+
+
+            {/* 이전/다음 키워드 네비게이션 */}
+            <nav className="keyword-nav">
+                <div className="keyword-nav-inner">
+                    {prevItem ? (
+                        <Link to={`/detail/${prevItem.id}`} className="keyword-nav-btn keyword-nav-prev">
+                            <Icons.ChevronLeft size={16} className="keyword-nav-arrow" />
+                            <div className="keyword-nav-content">
+                                <span className="keyword-nav-label">이전 키워드</span>
+                                <span className="keyword-nav-title">{prevItem.enTitle}</span>
+                            </div>
+                        </Link>
+                    ) : <div className="keyword-nav-empty" />}
+
+                    {prevItem && nextItem && <div className="keyword-nav-divider" />}
+
+                    {nextItem ? (
+                        <Link to={`/detail/${nextItem.id}`} className="keyword-nav-btn keyword-nav-next">
+                            <div className="keyword-nav-content">
+                                <span className="keyword-nav-label">다음 키워드</span>
+                                <span className="keyword-nav-title">{nextItem.enTitle}</span>
+                            </div>
+                            <Icons.ChevronRight size={16} className="keyword-nav-arrow" />
+                        </Link>
+                    ) : <div className="keyword-nav-empty" />}
+                </div>
+            </nav>
         </div>
     );
 };

@@ -206,6 +206,28 @@
     transform: translateY(0);
 }
 
+/* 터치 기기(모바일)에서 홈 카드 호버 효과 비활성화 */
+@media (hover: none) {
+    .concept-card:hover .card-inner {
+        transform: none;
+        border-color: var(--border);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    .concept-card:hover .card-footer-icon {
+        opacity: 0.6;
+        transform: none;
+    }
+
+    .concept-card:hover .hover-state {
+        opacity: 0;
+    }
+
+    .concept-card:hover .hover-text {
+        transform: translateY(20px);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

@@ -128,16 +128,15 @@
     margin-left: 260px;
     margin-top: 64px;
     min-height: calc(100vh - 64px);
-    padding: 40px 64px;
+    padding: 40px 40px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (max-width: 1199px) {
     .main-layout {
         margin-left: 0 !important;
-        /* LNB 공간 삭제 및 본문 확장 */
-        padding: 40px 160px;
-        /* GNB 검색바 시작점(160px)과 본문 타이틀 정렬 */
+        padding: 40px 80px;
+        /* GNB 검색바 시작점과 본문 타이틀 정렬 */
     }
 }
 
@@ -145,5 +144,13 @@
     .main-layout {
         padding: 32px 24px;
         /* 모바일 대응 */
+    }
+}
+
+/* 터치 기기(모바일)에서 사이드바 호버 효과 비활성화 */
+@media (hover: none) {
+    .nav-item:hover {
+        background-color: transparent;
+        color: var(--text-dim);
     }
 }

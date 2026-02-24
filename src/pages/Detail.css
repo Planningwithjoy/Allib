@@ -9,21 +9,16 @@
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
     color: var(--text-dim);
-    font-weight: 600;
-    margin-bottom: 48px;
-    padding: 8px 16px;
-    border-radius: 100px;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
+    opacity: 0.6;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .back-link:hover {
-    border-color: var(--primary);
-    color: var(--text);
-    transform: translateX(-5px);
+    color: var(--primary);
+    opacity: 1;
+    transform: translateX(-3px);
 }
 
 .detail-hero {
@@ -33,27 +28,72 @@
 .detail-head-top {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
+/* detail-icon-box는 더이상 사용하지 않음 */
 .detail-icon-box {
-    width: 64px;
-    height: 64px;
-    background-color: #E6F5FC;
-    border: 1px solid var(--primary);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
+    display: none;
 }
 
-.detail-meta-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    justify-content: center;
+/* 아이콘 + hoverText 통합 pill */
+.detail-icon-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px 5px 10px;
+    background-color: var(--primary);
+    border-radius: 100px;
+    color: #fff;
+}
+
+.detail-icon-pill svg {
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+/* hoverText 텍스트 */
+.detail-hover-badge {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+/* 상단 카테고리 */
+.detail-category {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+}
+
+/* 호환성 유지용 (hidden) */
+.detail-meta-inline {
+    display: none;
+}
+
+.detail-meta-dot {
+    display: none;
+}
+
+.detail-chip-container {
+    display: none;
+}
+
+.detail-chip {
+    display: none;
+}
+
+.chip-text {
+    display: none;
+}
+
+.detail-meta-top {
+    display: none;
 }
 
 .detail-title-group {
@@ -64,13 +104,48 @@
 
 .detail-title-row {
     display: flex;
-    align-items: baseline;
-    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 8px 16px;
     margin-top: 0;
 }
 
+/* pill + 연관키워드 칩 묶음 */
+.detail-title-row-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+/* 헤더 연관 키워드 칩 */
+.header-related-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.header-related-chips .related-chip {
+    padding: 5px 12px;
+    font-size: 0.82rem;
+    border-radius: 100px;
+    gap: 6px;
+}
+
+.header-related-chips .related-chip-text {
+    font-size: 0.82rem;
+}
+
+.header-related-chips .related-chip-icon {
+    width: 12px;
+    height: 12px;
+}
+
 .detail-title {
-    font-size: 3.8rem;
+    font-size: 2.8rem;
     font-weight: 700;
     letter-spacing: -0.04em;
     color: var(--text);
@@ -87,42 +162,7 @@
     line-height: 1;
 }
 
-.detail-category {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #595858;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    opacity: 1;
-}
-
-.detail-chip-container {
-    line-height: 1;
-}
-
-.detail-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 16px;
-    background-color: #F9FAFB;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    transition: all 0.2s;
-    height: 32px;
-}
-
-.detail-chip:hover {
-    background-color: #F3F4F6;
-    border-color: var(--border);
-}
-
-.chip-text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #595858;
-    letter-spacing: -0.01em;
-}
+/* detail-category, detail-chip 스타일은 detail-head-top 쪽 통합 스타일로 이전됨 */
 
 .detail-main-content {
     display: grid;
@@ -145,7 +185,7 @@
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 24px;
-    padding: 48px;
+    padding: 32px;
     height: 100%;
     transition: border-color 0.3s;
 }
@@ -164,7 +204,7 @@
 }
 
 .description-rich-text {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 500;
     line-height: 1.6;
     color: var(--text);
@@ -178,7 +218,7 @@
 }
 
 .full-content-box {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text-dim);
     font-weight: 400;
@@ -204,6 +244,7 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     color: var(--text);
+    font-size: 0.95rem;
     font-weight: 500;
     line-height: 1.5;
 }
@@ -216,16 +257,15 @@
 
 /* FAQ Section */
 .detail-faq-section {
-    margin-top: 48px;
+    margin-top: 32px;
     margin-bottom: 0px;
-    /* 기존 120px을 연관 키워드 하단으로 이동 */
     animation: fadeIn 0.6s ease-out;
 }
 
 .faq-main-title {
     font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     color: var(--text);
     letter-spacing: -0.02em;
 }
@@ -258,7 +298,7 @@
 
 .faq-question {
     width: 100%;
-    padding: 28px 40px;
+    padding: 20px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -267,7 +307,7 @@
     cursor: pointer;
     text-align: left;
     color: var(--text);
-    font-size: 1.15rem;
+    font-size: 0.97rem;
     font-weight: 600;
     font-family: inherit;
     letter-spacing: -0.01em;
@@ -444,9 +484,7 @@
         padding: 0 4px;
     }
 
-    .back-link {
-        margin-bottom: 32px;
-    }
+
 
     .detail-hero {
         margin-bottom: 24px;
@@ -548,11 +586,7 @@
 
 /* Related Keywords Section */
 .detail-related-section {
-    position: relative;
-    margin-top: 48px;
-    /* FAQ와 본문 간격과 동일하게 맞춤 */
-    margin-bottom: 120px;
-    /* 페이지 하단 여백 확보 */
+    display: none;
 }
 
 .related-title {
@@ -600,24 +634,20 @@
     letter-spacing: -0.01em;
 }
 
-/* Premium Hover Physics */
+/* Hover */
 .related-chip:hover {
     border-color: var(--primary);
     background-color: #FFFFFF;
     color: var(--primary);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
 }
 
 .related-chip:hover .related-chip-icon {
-    transform: scale(1.15) rotate(8deg);
-    /* 생동감 있는 마이크로 인터랙션 */
+    color: var(--primary);
 }
 
 /* Active State */
 .related-chip:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    opacity: 0.8;
 }
 
 /* Responsiveness */
@@ -640,5 +670,164 @@
 
     .related-chips-container {
         gap: 10px;
+    }
+}
+
+/* 이전/다음 키워드 네비게이션 */
+.keyword-nav {
+    margin-top: 32px;
+    margin-bottom: 120px;
+}
+
+.keyword-nav-inner {
+    display: flex;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.keyword-nav-empty {
+    flex: 1;
+}
+
+.keyword-nav-divider {
+    width: 1px;
+    background-color: var(--border);
+    flex-shrink: 0;
+    align-self: stretch;
+}
+
+.keyword-nav-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.keyword-nav-prev {
+    justify-content: flex-start;
+}
+
+.keyword-nav-next {
+    justify-content: flex-end;
+}
+
+.keyword-nav-arrow {
+    color: var(--text-dim);
+    opacity: 0.35;
+    flex-shrink: 0;
+    transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.keyword-nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.keyword-nav-prev .keyword-nav-content {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.keyword-nav-next .keyword-nav-content {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.keyword-nav-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    opacity: 0.45;
+    letter-spacing: 0.02em;
+}
+
+.keyword-nav-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+}
+
+/* 호버 효과 */
+.keyword-nav-btn:hover {
+    background-color: rgba(0, 156, 224, 0.04);
+}
+
+.keyword-nav-btn:hover .keyword-nav-arrow {
+    color: var(--primary);
+    opacity: 1;
+}
+
+.keyword-nav-prev:hover .keyword-nav-arrow {
+    transform: translateX(-3px);
+}
+
+.keyword-nav-next:hover .keyword-nav-arrow {
+    transform: translateX(3px);
+}
+
+.keyword-nav-btn:hover .keyword-nav-title {
+    color: var(--primary);
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+    .keyword-nav {
+        margin-top: 28px;
+        margin-bottom: 80px;
+    }
+
+    .keyword-nav-inner {
+        flex-direction: column;
+        border-radius: 16px;
+    }
+
+    .keyword-nav-divider {
+        width: auto;
+        height: 1px;
+        align-self: auto;
+    }
+
+    .keyword-nav-btn {
+        padding: 14px 18px;
+    }
+
+    .keyword-nav-next {
+        justify-content: flex-start;
+    }
+
+    .keyword-nav-next .keyword-nav-content {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .keyword-nav-next .keyword-nav-arrow {
+        order: -1;
+    }
+}
+
+/* 터치 기기 호버 효과 비활성화 */
+@media (hover: none) {
+    .keyword-nav-btn:hover {
+        background-color: transparent;
+    }
+
+    .keyword-nav-btn:hover .keyword-nav-arrow {
+        color: var(--text-dim);
+        opacity: 0.35;
+        transform: none;
+    }
+
+    .keyword-nav-btn:hover .keyword-nav-title {
+        color: var(--text);
     }
 }
