@@ -41,8 +41,8 @@
 .detail-icon-pill {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 5px 14px 5px 10px;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
     background-color: var(--primary);
     border-radius: 100px;
     color: #fff;
@@ -56,9 +56,10 @@
 /* hoverText 텍스트 */
 .detail-hover-badge {
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     letter-spacing: -0.01em;
+    line-height: 1;
 }
 
 /* 상단 카테고리 */
@@ -125,7 +126,6 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
-    margin-left: 4px;
 }
 
 .header-related-chips .related-chip {
@@ -145,15 +145,15 @@
 }
 
 .detail-title {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     font-weight: 700;
     letter-spacing: -0.04em;
     color: var(--text);
 }
 
 .detail-subtitle {
-    font-size: 1.8rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--text-dim);
     opacity: 0.4;
 }
@@ -167,7 +167,7 @@
 .detail-main-content {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
+    gap: 32px;
     align-items: stretch;
 }
 
@@ -197,7 +197,7 @@
 .detail-card h3 {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--text-dim);
     letter-spacing: -0.01em;
     opacity: 0.7;
@@ -209,19 +209,18 @@
     line-height: 1.6;
     color: var(--text);
     margin-bottom: 24px;
-    white-space: pre-wrap;
     padding: 24px;
     background-color: #F9FAFB;
     border: 1px solid var(--border);
     border-radius: 16px;
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 .full-content-box {
     font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.7;
     color: var(--text-dim);
-    font-weight: 400;
     white-space: pre-wrap;
     padding: 24px;
     background-color: #F9FAFB;
@@ -237,7 +236,7 @@
 
 .point-list li {
     display: flex;
-    gap: 16px;
+    gap: 8px;
     align-items: flex-start;
     padding: 16px;
     background-color: #F9FAFB;
@@ -263,11 +262,12 @@
 }
 
 .faq-main-title {
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     margin-bottom: 16px;
-    color: var(--text);
-    letter-spacing: -0.02em;
+    color: var(--text-dim);
+    letter-spacing: -0.01em;
+    opacity: 0.7;
 }
 
 .faq-list {
@@ -354,16 +354,16 @@
 }
 
 .faq-answer-text {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.8;
     color: var(--text);
-    font-weight: 500;
     white-space: pre-wrap;
     letter-spacing: -0.01em;
 }
 
 .faq-answer-header {
-    font-size: 1.15rem;
+    font-size: 0.97rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: -12px;
@@ -372,7 +372,8 @@
 }
 
 .faq-answer-desc {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.8;
     color: var(--text-dim);
     white-space: pre-wrap;
@@ -382,11 +383,12 @@
 
 .faq-answer-summary {
     margin-top: 12px;
-    padding: 24px;
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.02);
     border-radius: 12px;
     border: 1px solid var(--border);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.7;
     color: var(--text);
     white-space: pre-wrap;
@@ -512,22 +514,42 @@
 
     .description-rich-text,
     .full-content-box {
-        padding: 20px;
-        font-size: 1rem;
+        padding: 16px;
+        font-size: 0.88rem;
     }
 
     .faq-question {
-        padding: 24px;
-        font-size: 1.05rem;
+        padding: 16px 20px;
+        font-size: 0.9rem;
+    }
+
+    .point-list li {
+        font-size: 0.88rem;
+        padding: 14px;
     }
 
     .faq-answer {
-        padding: 0 24px 24px 24px;
+        padding: 0 20px 20px 20px;
+    }
+
+    .faq-answer-text,
+    .faq-answer-desc,
+    .faq-answer-summary {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .faq-answer-header {
+        font-size: 0.9rem;
     }
 
     .faq-answer-table-wrapper td {
-        padding: 14px 16px;
-        font-size: 0.9rem;
+        padding: 12px 14px;
+        font-size: 0.84rem;
+    }
+
+    .faq-main-title {
+        font-size: 0.97rem;
     }
 }
 
@@ -802,16 +824,16 @@
     }
 
     .keyword-nav-next {
-        justify-content: flex-start;
+        justify-content: flex-end;
     }
 
     .keyword-nav-next .keyword-nav-content {
-        align-items: flex-start;
-        text-align: left;
+        align-items: flex-end;
+        text-align: right;
     }
 
     .keyword-nav-next .keyword-nav-arrow {
-        order: -1;
+        order: 1;
     }
 }
 

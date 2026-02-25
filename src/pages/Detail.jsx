@@ -121,7 +121,7 @@ const Detail = () => {
                 </section>
 
                 <section className="detail-card point">
-                    <h3>기획 시 적용 포인트 및 고민 지점</h3>
+                    <h3>중요 포인트</h3>
                     <ul className="point-list">
                         {data.bullets.map((bullet, idx) => (
                             <li key={idx}>

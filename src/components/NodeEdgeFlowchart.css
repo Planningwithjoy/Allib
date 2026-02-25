@@ -1,6 +1,9 @@
 .flowchart-wrapper {
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     padding: 10px;
 }
 
@@ -14,6 +17,12 @@
     border: 1px solid var(--border);
     margin: 16px 0;
     min-width: max-content;
+}
+
+@media (max-width: 600px) {
+    .flowchart-container {
+        padding: 40px 24px;
+    }
 }
 
 .flowchart-main-row {

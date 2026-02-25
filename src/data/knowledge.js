@@ -1096,7 +1096,7 @@ export const KNOWLEDGE_DATA = [
     koTitle: "노드 / 엣지",
     mainTheme: "처리·실행",
     icon: "Share2",
-    hoverText: "작업 / 전환",
+    hoverText: "흐름 설계 단위",
     chipIcon: "Waypoints",
     description: "Node는 작업을 수행하고, Edge는 다음 경로를 결정하는 연결선",
     fullContent: `🧩 Node: AI가 특정 시점에 수행하는 하나의 의미 있는 작업 단위 ("여기서 무슨 일을 하는가")\n\n🧭 Edge: 한 Node가 끝난 뒤 다음으로 이동할 경로를 결정하는 연결 ("현재 State를 기준으로 다음 Node를 선택")\n\n📌 Node는 일을 하고 Edge는 길을 고름`,
@@ -1211,7 +1211,7 @@ export const KNOWLEDGE_DATA = [
     koTitle: "조건 분기",
     mainTheme: "처리·실행",
     icon: "GitBranch",
-    hoverText: "조건 분기",
+    hoverText: "경로 선택",
     chipIcon: "Split",
     description:
       "Node 실행이 끝난 뒤 현재 State를 기준으로 다음에 이동할 Node를 선택하는 경로",
@@ -1273,7 +1273,7 @@ export const KNOWLEDGE_DATA = [
     koTitle: "루프",
     mainTheme: "처리·실행",
     icon: "RotateCw",
-    hoverText: "루프",
+    hoverText: "재시도 구조",
     chipIcon: "RefreshCw",
     description:
       "AI가 한 번의 시도로 끝내지 않고 조건이 만족될 때까지 같은 흐름을 다시 수행하도록 만드는 구조",
@@ -1288,7 +1288,7 @@ export const KNOWLEDGE_DATA = [
     faqs: [
       {
         question:
-          "Loop를 써도 되는 문제와 써서는 안 되는 문제를 어떻게 구분할까?",
+          "Loop를 써도 되는 문제와 안 되는 문제를 어떻게 구분할까?",
         answerBlocks: [
           { type: "header", content: "① 가장 단순하고 강력한 기준" },
           {
@@ -1930,11 +1930,13 @@ AI 시스템에서 입력 분석·출력 처리·Webhook 연동 등에
           },
           {
             type: "table",
-            headers: ["구분", "역할", "비유"],
-            rows: [
-              ["파싱 (Parsing)", "문자열을 분석해 원하는 형태의 데이터베이스로 변환하는 범용적인 '과정'", "레시피를 보고 재료를 손질하는 '요리 과정'"],
-              ["아웃풋 파서 (Output Parser)", "LLM의 텍스트 답변을 JSON이나 구조체 객체로 강제 변환/파싱 해주는 체인 내 특정 '도구'", "재료를 규격에 맞게 썰어주는 '채칼 무채 기계'"]
-            ]
+            content: {
+              headers: ["구분", "역할", "비유"],
+              rows: [
+                ["파싱 (Parsing)", "문자열을 분석해 원하는 형태의 데이터베이스로 변환하는 범용적인 '과정'", "레시피를 보고 재료를 손질하는 '요리 과정'"],
+                ["아웃풋 파서 (Output Parser)", "LLM의 텍스트 답변을 JSON이나 구조체 객체로 강제 변환/파싱 해주는 체인 내 특정 '도구'", "재료를 규격에 맞게 썰어주는 '채칼 무채 기계'"]
+              ]
+            }
           }
         ]
       }
