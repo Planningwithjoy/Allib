@@ -692,7 +692,7 @@ export const KNOWLEDGE_DATA = [
     id: "rag",
     relatedKeywords: ["retriever", "embedding", "elasticsearch"],
     enTitle: "RAG",
-    koTitle: "검색 증강 생성",
+    koTitle: "Retrieval-Augmented Generation",
     diagram: "RAGDiagram",
     mainTheme: "지식·이해",
     icon: "Search",
