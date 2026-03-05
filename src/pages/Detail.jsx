@@ -74,7 +74,7 @@ const Detail = () => {
             <header className="detail-hero">
                 <div className="detail-title-group">
                     <div className="detail-head-top">
-                        <Link to="/" className="back-link">
+                        <Link to="/" className="back-link group">
                             <Icons.ChevronLeft size={22} />
                         </Link>
                         <span className="detail-category">{data.mainTheme}</span>

@@ -271,6 +271,13 @@ export const OX_QUESTIONS = [
         question: "Webhook은 사용자가 요청했을 때만 데이터를 가져오는 '요청 기반' 통신 방식이다.",
         answer: false,
         explanation: "Webhook은 요청 기반이 아니라 '이벤트 기반'이에요. 특정 사건이 발생했을 때 서버가 알아서 데이터를 밀어넣어 주는 방식이랍니다."
+    },
+    {
+        id: 40,
+        category: "연결·확장",
+        question: "OAuth는 사용자의 비밀번호를 외부 서비스에 직접 제공하지 않고도 접근 권한을 안전하게 위임받는 방식이다.",
+        answer: true,
+        explanation: "비밀번호 대신 'Access Token'을 사용해 필요한 권한만 빌려오는 글로벌 표준 인증 방식이랍니다."
     }
 ];
 
@@ -770,5 +777,37 @@ export const SHORT_QUESTIONS = [
         answer: "Parsing(파싱)",
         acceptedAnswers: ["파싱", "parsing", "구조 해석", "구조화"],
         explanation: "주어진 문장을 쪼개고 분석해서 기계가 다루기 쉬운 정보(예: JSON)로 바꾸는 데이터 전처리의 기초 단계입니다."
+    },
+    {
+        id: 61,
+        category: "연결·확장",
+        question: "사용자의 비밀번호를 공유하지 않고 외부 애플리케이션에 제한된 접근 권한을 안전하게 위임하기 위한 글로벌 표준 인증 프로토콜은 무엇일까요?",
+        answer: "OAuth",
+        acceptedAnswers: ["oauth", "오어스", "오오스"],
+        explanation: "비밀번호를 넘겨주는 대신 '열쇠(Token)'를 빌려주는 방식이에요. AI가 내 계정의 정보에 접근할 때 필수로 쓰이는 보안 기술이죠."
+    },
+    {
+        id: 62,
+        category: "UX·운영",
+        question: "AI가 생성한 결과물을 대화창과 분리된 독립 작업 영역에 표시하여 AI를 작업 도구로 확장하는 UX 구조를 무엇이라고 할까요?",
+        answer: "Artifacts(아티팩트)",
+        acceptedAnswers: ["아티팩트", "artifacts", "artifact"],
+        explanation: "문서, 코드, 보고서 등의 결과물을 대화창과 분리해 독립적으로 관리하는 구조입니다. AI를 단순 대화형이 아닌 작업 도구로 확장하는 UX 설계 방식이에요."
+    },
+    {
+        id: 63,
+        category: "지식·이해",
+        question: "AI가 학습하거나 처리하는 데이터 안에 포함된 의미 없는 정보나 방해 정보로, 모델의 성능 저하 및 잘못된 결과를 유발하는 원인이 되는 것을 무엇이라고 할까요?",
+        answer: "Noise(노이즈)",
+        acceptedAnswers: ["노이즈", "noise", "잡음"],
+        explanation: "AI 시스템에서는 데이터 품질 문제로 나타나는 경우가 많으며, RAG나 검색 과정에서 이러한 방해 정보(노이즈)를 제거하고 정제하는 전략이 매우 중요합니다."
+    },
+    {
+        id: 64,
+        category: "지식·이해",
+        question: "텍스트만 처리하는 LLM과 달리 시각 정보(이미지)까지 함께 이해하고 연결해 추론하는 능력을 갖춘 AI 모델을 무엇이라고 할까요? (알파벳 3글자로 입력)",
+        answer: "VLM",
+        acceptedAnswers: ["vlm", "VLM"],
+        explanation: "Vision-Language Model의 약자로, 시각 정보까지 의미 공간에 포함하여 폭넓고 복합적인 추론이 가능해집니다."
     }
 ];
