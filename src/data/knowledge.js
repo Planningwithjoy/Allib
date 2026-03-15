@@ -2429,6 +2429,38 @@ export const KNOWLEDGE_DATA = [
           },
         ],
       },
+      {
+        question: "MCP와 API의 차이점이 무엇인가요?",
+        answerBlocks: [
+          {
+            type: "text",
+            content: "가장 큰 차이는 '누가 이해하고 사용하는가'에 있습니다.\nAPI가 사람을 위한 명세서라면, MCP는 AI를 위한 통신 규칙입니다.",
+          },
+          { type: "header", content: "① Interface(API) vs Protocol(MCP)" },
+          {
+            type: "desc",
+            content:
+              "• API: 외부에서 구현된 기능이나 데이터를 주고받기 위해 정해진 명세서입니다.\n• MCP: AI가 도구의 기능을 직접 이해하고 통신할 수 있도록 정해준 표준 규약입니다.",
+          },
+          { type: "header", content: "② API만 있을 때 (사용자 중심)" },
+          {
+            type: "desc",
+            content:
+              '사용자가 API 기능 명세서를 직접 보고 이해한 다음, 필요한 함수를 지정하고 파라미터를 정의해서 호출해야 합니다.\n\n예: "OO API의 xx 기능을 사용할 건데, □□를 기준으로 조회해줘."',
+          },
+          { type: "header", content: "③ MCP가 있을 때 (LLM 중심)" },
+          {
+            type: "desc",
+            content:
+              "LLM이 직접 API 기능을 이해하고, 필요한 파라미터를 스스로 만들어서 서버에 요청합니다.\n즉, MCP는 LLM을 통해 도구를 어떻게 활용해야 하는지까지 결정해 줍니다.\n\n예: \"OO 기능을 사용하고 싶어.\" → LLM이 이해해서 검색 결과만 가져옴",
+          },
+          {
+            type: "summary",
+            content:
+              "정리하자면:\n• API는 도구의 사용 설명서에 가깝고,\n• MCP는 AI가 그 도구를 능숙하게 다루도록 돕는 약속에 가깝습니다.",
+          },
+        ],
+      },
     ],
   },
   {
